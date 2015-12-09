@@ -74,9 +74,11 @@
 }
 - (void)setCurrentDataMaxAndMin
 {
+    
     if (0 == self.startDrawIndex) {
         self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
     }
+    
     
     if (self.dataSet.data.count > 0) {
         self.maxPrice = CGFLOAT_MIN;
@@ -113,15 +115,17 @@
                       rect:(CGRect)rect;
 {
     
-    CGContextSetFillColorWithColor(context, [UIColor groupTableViewBackgroundColor].CGColor);
+    CGContextSetFillColorWithColor(context, self.gridBackgroundColor.CGColor);
     CGContextFillRect(context, rect);
     
     //画边框
-    CGContextSetLineWidth(context, 0.5);
-    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextSetLineWidth(context, self.borderWidth);
+    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
     CGContextStrokeRect(context, CGRectMake(self.contentLeft, self.contentTop, self.contentWidth, (self.uperChartHeightScale * self.contentHeight)));
     CGContextStrokeRect(context, CGRectMake(self.contentLeft, (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, self.contentWidth, (self.contentBottom - (self.uperChartHeightScale * self.contentHeight)-self.xAxisHeitht)));
     
+    //画中间的线
+    [self drawline:context startPoint:CGPointMake(self.contentLeft,(self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop) stopPoint:CGPointMake(self.contentRight, (self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop) color:self.borderColor lineWidth:self.borderWidth/2.0];
 
 }
 
@@ -145,26 +149,26 @@
         CGFloat candleWidth = self.candleWidth - self.candleWidth / 6.0;
         CGFloat startX = left + candleWidth/2.0 ;
         
-        UIColor * color = [UIColor redColor];
+        UIColor * color = self.dataSet.candleRiseColor;
         if (open < close) {
-            color = [UIColor greenColor];
+            color = self.dataSet.candleFallColor;
             
             [self drawRect:context rect:CGRectMake(left, open, candleWidth, close-open) color:color];
-            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color];
+            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color lineWidth:self.dataSet.candleTopBottmLineWidth];
         }
         else if (open == close) {
             if (i > 1) {
                 YKLineEntity * lastEntity = [self.dataSet.data objectAtIndex:i-1];
                 if (lastEntity.close > entity.close) {
-                    color = [UIColor greenColor];
+                    color = self.dataSet.candleFallColor;
                 }
             }
             [self drawRect:context rect:CGRectMake(left, open, candleWidth, 1.5) color:color];
-            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color];
+            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color lineWidth:self.dataSet.candleTopBottmLineWidth];
         } else {
-            color = [UIColor redColor];
+            color = self.dataSet.candleRiseColor;
             [self drawRect:context rect:CGRectMake(left, close, candleWidth, open-close) color:color];
-            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color];
+            [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color lineWidth:self.dataSet.candleTopBottmLineWidth];
         }
        
         
@@ -174,15 +178,15 @@
             
             CGFloat lastY5 = (self.maxPrice - lastEntity.ma5)*self.candleCoordsScale + self.contentTop;
             CGFloat  y5 = (self.maxPrice - entity.ma5)*self.candleCoordsScale  + self.contentTop;
-            [self drawline:context startPoint:CGPointMake(lastX, lastY5) stopPoint:CGPointMake(startX, y5) color:[UIColor purpleColor]];
+            [self drawline:context startPoint:CGPointMake(lastX, lastY5) stopPoint:CGPointMake(startX, y5) color:self.dataSet.avgMA5Color lineWidth:self.dataSet.avgLineWidth];
             
             CGFloat lastY10 = (self.maxPrice - lastEntity.ma10)*self.candleCoordsScale  + self.contentTop;
             CGFloat  y10 = (self.maxPrice - entity.ma10)*self.candleCoordsScale  + self.contentTop;
-            [self drawline:context startPoint:CGPointMake(lastX, lastY10) stopPoint:CGPointMake(startX, y10) color:[UIColor orangeColor]];
+            [self drawline:context startPoint:CGPointMake(lastX, lastY10) stopPoint:CGPointMake(startX, y10) color:self.dataSet.avgMA10Color lineWidth:self.dataSet.avgLineWidth];
             
             CGFloat lastY20 = (self.maxPrice - lastEntity.ma20)*self.candleCoordsScale  + self.contentTop;
             CGFloat  y20 = (self.maxPrice - entity.ma20)*self.candleCoordsScale  + self.contentTop;
-            [self drawline:context startPoint:CGPointMake(lastX, lastY20) stopPoint:CGPointMake(startX, y20) color:[UIColor blueColor]];
+            [self drawline:context startPoint:CGPointMake(lastX, lastY20) stopPoint:CGPointMake(startX, y20) color:self.dataSet.avgMA20Color lineWidth:self.dataSet.avgLineWidth];
         }
         
         //成交量
@@ -210,12 +214,13 @@
       startPoint:(CGPoint)startPoint
        stopPoint:(CGPoint)stopPoint
            color:(UIColor *)color
+       lineWidth:(CGFloat)lineWitdth
 {
     if (startPoint.x < self.contentLeft ||stopPoint.x >self.contentRight || startPoint.y <self.contentTop || stopPoint.y < self.contentTop) {
         return;
     }
     CGContextSetStrokeColorWithColor(context, color.CGColor);
-    CGContextSetLineWidth(context, 1);
+    CGContextSetLineWidth(context, lineWitdth);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, startPoint.x, startPoint.y);
     CGContextAddLineToPoint(context, stopPoint.x,stopPoint.y);
@@ -268,6 +273,11 @@
 {
     [super notifyDataSetChanged];
     [self setNeedsDisplay];
+}
+- (void)notifyDeviceOrientationChanged
+{
+    [super notifyDeviceOrientationChanged];
+    self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
 }
 
 /*

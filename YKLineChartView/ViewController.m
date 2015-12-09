@@ -49,13 +49,24 @@
         entity.volume = [dic[@"total_volume_trade"] doubleValue];
         [array addObject:entity];
     }
+    [array addObjectsFromArray:array];
     YKLineDataSet * dataset = [[YKLineDataSet alloc]init];
     dataset.data = array;
     dataset.highlightLineColor = [UIColor redColor];
     dataset.highlightLineWidth = 0.5;
+    dataset.candleRiseColor = [UIColor redColor];
+    dataset.candleFallColor = [UIColor greenColor];
+    dataset.avgLineWidth = 1.f;
+    dataset.avgMA10Color = [UIColor orangeColor];
+    dataset.avgMA5Color = [UIColor blueColor];
+    dataset.avgMA20Color = [UIColor purpleColor];
+    dataset.candleTopBottmLineWidth = 1;
     self.TestView.uperChartHeightScale = 0.7;
-    self.TestView.xAxisHeitht = 20;
-    
+    self.TestView.xAxisHeitht = 25;
+    [self.TestView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
+    self.TestView.gridBackgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.TestView.borderColor = [UIColor grayColor];
+    self.TestView.borderWidth = .5;
     [self.TestView setupData:dataset];
     
 

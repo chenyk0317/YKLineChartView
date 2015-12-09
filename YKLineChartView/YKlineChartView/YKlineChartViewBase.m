@@ -11,6 +11,10 @@
 @interface YKlineChartViewBase()
 
 
+@property (nonatomic,assign)CGFloat offsetLeft;
+@property (nonatomic,assign)CGFloat offsetTop;
+@property (nonatomic,assign)CGFloat offsetRight;
+@property (nonatomic,assign)CGFloat offsetBottom;
 
 @end
 @implementation YKlineChartViewBase
@@ -37,13 +41,16 @@
     [self setChartDimens:self.bounds.size.width height:self.bounds.size.height];
     [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    
+    [[UIDevice currentDevice]beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
-
 
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"bounds"];
     [self removeObserver:self forKeyPath:@"frame"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
@@ -61,20 +68,38 @@
     }
 
 }
+-(void) deviceOrientationDidChange:(NSNotification *) notification
+{
+    if([UIDevice currentDevice].orientation!=UIDeviceOrientationUnknown)
+    {
+        [self notifyDeviceOrientationChanged];
+    }
+}
 
+- (void)notifyDeviceOrientationChanged
+{
+    NSLog(@"屏幕旋转了");
+}
 - (void)notifyDataSetChanged
 {
     
 }
 
-
+- (void)setupChartOffsetWithLeft:(CGFloat)left top:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom
+{
+    self.offsetLeft = left;
+    self.offsetRight = right;
+    self.offsetTop = top;
+    self.offsetBottom = bottom;
+    
+}
 - (void)setChartDimens:(CGFloat)width
                 height:(CGFloat)height
 {
-    CGFloat offsetLeft = 10;
-    CGFloat offsetTop = 10;
-    CGFloat offsetRight = 10;
-    CGFloat offsetBottom = 10;
+    CGFloat offsetLeft = self.offsetLeft;
+    CGFloat offsetTop = self.offsetTop;
+    CGFloat offsetRight = self.offsetRight;
+    CGFloat offsetBottom = self.offsetBottom;
     self.chartHeight = height;
     self.chartWidth = width;
     [self restrainViewPort:offsetLeft top:offsetTop right:offsetRight bottom:offsetBottom];
