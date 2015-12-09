@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1CC9EA11C17CA5200C84696 /* YKlineChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA01C17CA5200C84696 /* YKlineChartViewBase.m */; };
+		E1CC9EA41C17CA8500C84696 /* YKlineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */; };
+		E1CC9EA71C17CAA600C84696 /* YKLineEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA61C17CAA600C84696 /* YKLineEntity.m */; };
+		E1CC9EAA1C17F4D900C84696 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1CC9EA91C17F4D900C84696 /* data.plist */; };
+		E1CC9EAD1C17FBD400C84696 /* YKineChartRender.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EAC1C17FBD400C84696 /* YKineChartRender.m */; };
+		E1CC9EB01C17FE8200C84696 /* YKLineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EAF1C17FE8200C84696 /* YKLineDataSet.m */; };
+		E1CF04FE1C16C535002974B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF04FD1C16C535002974B2 /* main.m */; };
+		E1CF05011C16C535002974B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05001C16C535002974B2 /* AppDelegate.m */; };
+		E1CF05041C16C535002974B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05031C16C535002974B2 /* ViewController.m */; };
+		E1CF05071C16C535002974B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1CF05051C16C535002974B2 /* Main.storyboard */; };
+		E1CF05091C16C535002974B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1CF05081C16C535002974B2 /* Assets.xcassets */; };
+		E1CF050C1C16C535002974B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1CF050A1C16C535002974B2 /* LaunchScreen.storyboard */; };
+		E1CF05171C16C536002974B2 /* YKLineChartViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05161C16C536002974B2 /* YKLineChartViewTests.m */; };
+		E1CF05221C16C536002974B2 /* YKLineChartViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05211C16C536002974B2 /* YKLineChartViewUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1CF05131C16C536002974B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1CF04F11C16C535002974B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1CF04F81C16C535002974B2;
+			remoteInfo = YKLineChartView;
+		};
+		E1CF051E1C16C536002974B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1CF04F11C16C535002974B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1CF04F81C16C535002974B2;
+			remoteInfo = YKLineChartView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E1CC9E9F1C17CA5200C84696 /* YKlineChartViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKlineChartViewBase.h; sourceTree = "<group>"; };
+		E1CC9EA01C17CA5200C84696 /* YKlineChartViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKlineChartViewBase.m; sourceTree = "<group>"; };
+		E1CC9EA21C17CA8500C84696 /* YKlineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKlineChartView.h; sourceTree = "<group>"; };
+		E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKlineChartView.m; sourceTree = "<group>"; };
+		E1CC9EA51C17CAA600C84696 /* YKLineEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineEntity.h; sourceTree = "<group>"; };
+		E1CC9EA61C17CAA600C84696 /* YKLineEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineEntity.m; sourceTree = "<group>"; };
+		E1CC9EA91C17F4D900C84696 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		E1CC9EAB1C17FBD400C84696 /* YKineChartRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKineChartRender.h; sourceTree = "<group>"; };
+		E1CC9EAC1C17FBD400C84696 /* YKineChartRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKineChartRender.m; sourceTree = "<group>"; };
+		E1CC9EAE1C17FE8200C84696 /* YKLineDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineDataSet.h; sourceTree = "<group>"; };
+		E1CC9EAF1C17FE8200C84696 /* YKLineDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineDataSet.m; sourceTree = "<group>"; };
+		E1CF04F91C16C535002974B2 /* YKLineChartView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YKLineChartView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CF04FD1C16C535002974B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1CF04FF1C16C535002974B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E1CF05001C16C535002974B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E1CF05021C16C535002974B2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E1CF05031C16C535002974B2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E1CF05061C16C535002974B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E1CF05081C16C535002974B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E1CF050B1C16C535002974B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E1CF050D1C16C535002974B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1CF05121C16C536002974B2 /* YKLineChartViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YKLineChartViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CF05161C16C536002974B2 /* YKLineChartViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewTests.m; sourceTree = "<group>"; };
+		E1CF05181C16C536002974B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1CF051D1C16C536002974B2 /* YKLineChartViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YKLineChartViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1CF05211C16C536002974B2 /* YKLineChartViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewUITests.m; sourceTree = "<group>"; };
+		E1CF05231C16C536002974B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1CF04F61C16C535002974B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF050F1C16C536002974B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF051A1C16C536002974B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1CC9E9E1C17CA0F00C84696 /* YKlineChartView */ = {
+			isa = PBXGroup;
+			children = (
+				E1CC9EA91C17F4D900C84696 /* data.plist */,
+				E1CC9E9F1C17CA5200C84696 /* YKlineChartViewBase.h */,
+				E1CC9EA01C17CA5200C84696 /* YKlineChartViewBase.m */,
+				E1CC9EA21C17CA8500C84696 /* YKlineChartView.h */,
+				E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */,
+				E1CC9EA51C17CAA600C84696 /* YKLineEntity.h */,
+				E1CC9EA61C17CAA600C84696 /* YKLineEntity.m */,
+				E1CC9EAE1C17FE8200C84696 /* YKLineDataSet.h */,
+				E1CC9EAF1C17FE8200C84696 /* YKLineDataSet.m */,
+				E1CC9EAB1C17FBD400C84696 /* YKineChartRender.h */,
+				E1CC9EAC1C17FBD400C84696 /* YKineChartRender.m */,
+			);
+			path = YKlineChartView;
+			sourceTree = "<group>";
+		};
+		E1CF04F01C16C535002974B2 = {
+			isa = PBXGroup;
+			children = (
+				E1CF04FB1C16C535002974B2 /* YKLineChartView */,
+				E1CF05151C16C536002974B2 /* YKLineChartViewTests */,
+				E1CF05201C16C536002974B2 /* YKLineChartViewUITests */,
+				E1CF04FA1C16C535002974B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1CF04FA1C16C535002974B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1CF04F91C16C535002974B2 /* YKLineChartView.app */,
+				E1CF05121C16C536002974B2 /* YKLineChartViewTests.xctest */,
+				E1CF051D1C16C536002974B2 /* YKLineChartViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1CF04FB1C16C535002974B2 /* YKLineChartView */ = {
+			isa = PBXGroup;
+			children = (
+				E1CC9E9E1C17CA0F00C84696 /* YKlineChartView */,
+				E1CF04FF1C16C535002974B2 /* AppDelegate.h */,
+				E1CF05001C16C535002974B2 /* AppDelegate.m */,
+				E1CF05021C16C535002974B2 /* ViewController.h */,
+				E1CF05031C16C535002974B2 /* ViewController.m */,
+				E1CF05051C16C535002974B2 /* Main.storyboard */,
+				E1CF05081C16C535002974B2 /* Assets.xcassets */,
+				E1CF050A1C16C535002974B2 /* LaunchScreen.storyboard */,
+				E1CF050D1C16C535002974B2 /* Info.plist */,
+				E1CF04FC1C16C535002974B2 /* Supporting Files */,
+			);
+			path = YKLineChartView;
+			sourceTree = "<group>";
+		};
+		E1CF04FC1C16C535002974B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1CF04FD1C16C535002974B2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1CF05151C16C536002974B2 /* YKLineChartViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1CF05161C16C536002974B2 /* YKLineChartViewTests.m */,
+				E1CF05181C16C536002974B2 /* Info.plist */,
+			);
+			path = YKLineChartViewTests;
+			sourceTree = "<group>";
+		};
+		E1CF05201C16C536002974B2 /* YKLineChartViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E1CF05211C16C536002974B2 /* YKLineChartViewUITests.m */,
+				E1CF05231C16C536002974B2 /* Info.plist */,
+			);
+			path = YKLineChartViewUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1CF04F81C16C535002974B2 /* YKLineChartView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1CF05261C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartView" */;
+			buildPhases = (
+				E1CF04F51C16C535002974B2 /* Sources */,
+				E1CF04F61C16C535002974B2 /* Frameworks */,
+				E1CF04F71C16C535002974B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YKLineChartView;
+			productName = YKLineChartView;
+			productReference = E1CF04F91C16C535002974B2 /* YKLineChartView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E1CF05111C16C536002974B2 /* YKLineChartViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1CF05291C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartViewTests" */;
+			buildPhases = (
+				E1CF050E1C16C536002974B2 /* Sources */,
+				E1CF050F1C16C536002974B2 /* Frameworks */,
+				E1CF05101C16C536002974B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1CF05141C16C536002974B2 /* PBXTargetDependency */,
+			);
+			name = YKLineChartViewTests;
+			productName = YKLineChartViewTests;
+			productReference = E1CF05121C16C536002974B2 /* YKLineChartViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E1CF051C1C16C536002974B2 /* YKLineChartViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1CF052C1C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartViewUITests" */;
+			buildPhases = (
+				E1CF05191C16C536002974B2 /* Sources */,
+				E1CF051A1C16C536002974B2 /* Frameworks */,
+				E1CF051B1C16C536002974B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1CF051F1C16C536002974B2 /* PBXTargetDependency */,
+			);
+			name = YKLineChartViewUITests;
+			productName = YKLineChartViewUITests;
+			productReference = E1CF051D1C16C536002974B2 /* YKLineChartViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1CF04F11C16C535002974B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = chenyk;
+				TargetAttributes = {
+					E1CF04F81C16C535002974B2 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					E1CF05111C16C536002974B2 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = E1CF04F81C16C535002974B2;
+					};
+					E1CF051C1C16C536002974B2 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = E1CF04F81C16C535002974B2;
+					};
+				};
+			};
+			buildConfigurationList = E1CF04F41C16C535002974B2 /* Build configuration list for PBXProject "YKLineChartView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E1CF04F01C16C535002974B2;
+			productRefGroup = E1CF04FA1C16C535002974B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1CF04F81C16C535002974B2 /* YKLineChartView */,
+				E1CF05111C16C536002974B2 /* YKLineChartViewTests */,
+				E1CF051C1C16C536002974B2 /* YKLineChartViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1CF04F71C16C535002974B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1CF050C1C16C535002974B2 /* LaunchScreen.storyboard in Resources */,
+				E1CF05091C16C535002974B2 /* Assets.xcassets in Resources */,
+				E1CC9EAA1C17F4D900C84696 /* data.plist in Resources */,
+				E1CF05071C16C535002974B2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF05101C16C536002974B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF051B1C16C536002974B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1CF04F51C16C535002974B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1CC9EA11C17CA5200C84696 /* YKlineChartViewBase.m in Sources */,
+				E1CC9EA41C17CA8500C84696 /* YKlineChartView.m in Sources */,
+				E1CF05041C16C535002974B2 /* ViewController.m in Sources */,
+				E1CC9EAD1C17FBD400C84696 /* YKineChartRender.m in Sources */,
+				E1CC9EB01C17FE8200C84696 /* YKLineDataSet.m in Sources */,
+				E1CF05011C16C535002974B2 /* AppDelegate.m in Sources */,
+				E1CC9EA71C17CAA600C84696 /* YKLineEntity.m in Sources */,
+				E1CF04FE1C16C535002974B2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF050E1C16C536002974B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1CF05171C16C536002974B2 /* YKLineChartViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1CF05191C16C536002974B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1CF05221C16C536002974B2 /* YKLineChartViewUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1CF05141C16C536002974B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1CF04F81C16C535002974B2 /* YKLineChartView */;
+			targetProxy = E1CF05131C16C536002974B2 /* PBXContainerItemProxy */;
+		};
+		E1CF051F1C16C536002974B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1CF04F81C16C535002974B2 /* YKLineChartView */;
+			targetProxy = E1CF051E1C16C536002974B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E1CF05051C16C535002974B2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1CF05061C16C535002974B2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E1CF050A1C16C535002974B2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1CF050B1C16C535002974B2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1CF05241C16C536002974B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E1CF05251C16C536002974B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1CF05271C16C536002974B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YKLineChartView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E1CF05281C16C536002974B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YKLineChartView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E1CF052A1C16C536002974B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YKLineChartViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YKLineChartView.app/YKLineChartView";
+			};
+			name = Debug;
+		};
+		E1CF052B1C16C536002974B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YKLineChartViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YKLineChartView.app/YKLineChartView";
+			};
+			name = Release;
+		};
+		E1CF052D1C16C536002974B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = YKLineChartViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = YKLineChartView;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E1CF052E1C16C536002974B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = YKLineChartViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juniorchina.YKLineChartViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = YKLineChartView;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1CF04F41C16C535002974B2 /* Build configuration list for PBXProject "YKLineChartView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1CF05241C16C536002974B2 /* Debug */,
+				E1CF05251C16C536002974B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1CF05261C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1CF05271C16C536002974B2 /* Debug */,
+				E1CF05281C16C536002974B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1CF05291C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1CF052A1C16C536002974B2 /* Debug */,
+				E1CF052B1C16C536002974B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1CF052C1C16C536002974B2 /* Build configuration list for PBXNativeTarget "YKLineChartViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1CF052D1C16C536002974B2 /* Debug */,
+				E1CF052E1C16C536002974B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1CF04F11C16C535002974B2 /* Project object */;
+}
