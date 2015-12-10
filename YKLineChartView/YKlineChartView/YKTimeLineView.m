@@ -91,12 +91,34 @@
     [self drawGridBackground:context rect:rect];
     [self drawTimeLine:context];
     [self drawLabelPrice:context];
+    
+    [self drawTimeLabel:context];
 
 }
 
 - (void)drawGridBackground:(CGContextRef)context rect:(CGRect)rect
 {
     [super drawGridBackground:context rect:rect];
+    [self drawline:context startPoint:CGPointMake(self.contentWidth/2.0 + self.contentLeft, self.contentTop) stopPoint:CGPointMake(self.contentWidth/2.0 + self.contentLeft,(self.uperChartHeightScale * self.contentHeight)+self.contentTop) color:self.borderColor lineWidth:self.borderWidth/2.0];
+}
+- (void)drawTimeLabel:(CGContextRef)context
+{
+    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
+    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
+    
+    NSMutableAttributedString * startTimeAttStr = [[NSMutableAttributedString alloc]initWithString:@"9:30" attributes:drawAttributes];
+    CGSize sizeStartTimeAttStr = [startTimeAttStr size];
+    [self drawLabel:context attributesText:startTimeAttStr rect:CGRectMake(self.contentLeft, (self.uperChartHeightScale * self.contentHeight+self.contentTop), sizeStartTimeAttStr.width, sizeStartTimeAttStr.height)];
+    
+    NSMutableAttributedString * midTimeAttStr = [[NSMutableAttributedString alloc]initWithString:@"11:30/13:00" attributes:drawAttributes];
+    CGSize sizeMidTimeAttStr = [midTimeAttStr size];
+    [self drawLabel:context attributesText:midTimeAttStr rect:CGRectMake(self.contentWidth/2.0 + self.contentLeft - sizeMidTimeAttStr.width/2.0, (self.uperChartHeightScale * self.contentHeight+self.contentTop), sizeMidTimeAttStr.width, sizeMidTimeAttStr.height)];
+    
+    NSMutableAttributedString * stopTimeAttStr = [[NSMutableAttributedString alloc]initWithString:@"15:00" attributes:drawAttributes];
+    CGSize sizeStopTimeAttStr = [stopTimeAttStr size];
+    [self drawLabel:context attributesText:stopTimeAttStr rect:CGRectMake(self.contentRight -sizeStopTimeAttStr.width, (self.uperChartHeightScale * self.contentHeight+self.contentTop), sizeStopTimeAttStr.width, sizeStopTimeAttStr.height)];
+
+    
 }
 - (void)drawTimeLine:(CGContextRef)context
 {
