@@ -216,9 +216,9 @@
     if (volume < 10000.0) {
         return [NSString stringWithFormat:@"%.0f ",volume];
     }else if (volume > 10000.0 && volume < 100000000.0){
-        return [NSString stringWithFormat:@"%.0f ",volume/10000.0];
+        return [NSString stringWithFormat:@"%.2f ",volume/10000.0];
     }else{
-        return [NSString stringWithFormat:@"%.0f ",volume/100000000.0];
+        return [NSString stringWithFormat:@"%.2f ",volume/100000000.0];
     }
 }
 

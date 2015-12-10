@@ -98,6 +98,16 @@
             self.minPrice = self.minPrice < entity.low ? self.minPrice : entity.low;
             self.maxPrice = self.maxPrice > entity.high ? self.maxPrice : entity.high;
             self.maxVolume = self.maxVolume >entity.volume ? self.maxVolume : entity.volume;
+            
+            self.minPrice = self.minPrice < entity.ma5 ? self.minPrice:entity.ma5;
+            self.minPrice = self.minPrice < entity.ma10 ? self.minPrice:entity.ma10;
+            self.minPrice = self.minPrice < entity.ma20 ? self.minPrice:entity.ma20;
+            
+            self.maxPrice = self.maxPrice > entity.ma5 ? self.maxPrice : entity.ma5;
+            self.maxPrice = self.maxPrice > entity.ma10 ? self.maxPrice : entity.ma10;
+            self.maxPrice = self.maxPrice > entity.ma20 ? self.maxPrice : entity.ma20;
+
+
         }
         
     }
@@ -115,14 +125,10 @@
     
     [self drawGridBackground:optionalContext rect:rect];
     
-    //[self drawHighlighted:optionalContext point:CGPointMake(50, 50)];
-    
-    
     [self drawLabelPrice:optionalContext];
-    
-    
 
     [self drawCandle:optionalContext];
+
 
 }
 - (void)drawGridBackground:(CGContextRef)context rect:(CGRect)rect
