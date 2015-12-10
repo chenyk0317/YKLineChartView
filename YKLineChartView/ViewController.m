@@ -42,7 +42,6 @@
         [array addObject:entity];
         //YTimeLineEntity * entity = [[YTimeLineEntity alloc]init];
     }
-    [array addObjectsFromArray:array];
     YKLineDataSet * dataset = [[YKLineDataSet alloc]init];
     dataset.data = array;
     dataset.highlightLineColor = [UIColor colorWithRed:60/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];

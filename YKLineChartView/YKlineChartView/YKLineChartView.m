@@ -71,10 +71,10 @@
 - (void)setStartDrawIndex:(NSInteger)startDrawIndex
 {
     if (startDrawIndex < 0) {
-        startDrawIndex = 1;
+        startDrawIndex = 0;
     }
     if (startDrawIndex + self.countOfshowCandle > self.dataSet.data.count) {
-        return;
+        _startDrawIndex = 0;
     }
     _startDrawIndex = startDrawIndex;
 }
@@ -257,9 +257,10 @@
             if (i == self.highlightLineCurrentIndex) {
                 
                 YKLineEntity * entity;
-                if (idex < self.dataSet.data.count) {
-                    entity = [self.dataSet.data objectAtIndex:idex];
+                if (i < self.dataSet.data.count) {
+                    entity = [self.dataSet.data objectAtIndex:i];
                 }
+                
                 
                 [self drawHighlighted:context point:CGPointMake(startX, close)idex:idex value:entity color:self.dataSet.highlightLineColor lineWidth:self.dataSet.highlightLineWidth];
                 [self drawAvgMarker:context idex:i];
