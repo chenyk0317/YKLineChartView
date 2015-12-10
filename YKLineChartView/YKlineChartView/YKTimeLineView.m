@@ -88,10 +88,11 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     
+    
     [self drawGridBackground:context rect:rect];
+    [self drawLabelPrice:context];
     [self drawTimeLabel:context];
     [self drawTimeLine:context];
-    [self drawLabelPrice:context];
     
 
 }
@@ -103,8 +104,7 @@
 }
 - (void)drawTimeLabel:(CGContextRef)context
 {
-    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
-    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
+    NSDictionary * drawAttributes = self.highlightAttributedDic ?: self.defaultAttributedDic;
     
     NSMutableAttributedString * startTimeAttStr = [[NSMutableAttributedString alloc]initWithString:@"9:30" attributes:drawAttributes];
     CGSize sizeStartTimeAttStr = [startTimeAttStr size];

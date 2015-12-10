@@ -149,8 +149,7 @@
     }
     
     
-    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
-    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
+    NSDictionary * drawAttributes = self.highlightAttributedDic ?:self.defaultAttributedDic;
     
     CGFloat radius = 8.0;
     CGFloat space = 4.0;

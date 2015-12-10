@@ -13,6 +13,7 @@
 @property (nonatomic,assign) CGFloat chartHeight;
 @property (nonatomic,assign) CGFloat chartWidth;
 
+
 - (void)commonInit;
 
 

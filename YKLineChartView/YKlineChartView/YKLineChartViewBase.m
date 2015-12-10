@@ -7,11 +7,8 @@
 //
 
 #import "YKLineChartViewBase.h"
-
 #import "YKLineEntity.h"
 @interface YKLineChartViewBase()
-
-
 
 
 @end
@@ -64,8 +61,7 @@
 
 - (void)drawLabelPrice:(CGContextRef)context
 {
-    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
-    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
+    NSDictionary * drawAttributes = self.leftYAxisAttributedDic?:self.defaultAttributedDic;
     
     NSString * maxPriceStr = [self handleStrWithPrice:self.maxPrice];
     NSMutableAttributedString * maxPriceAttStr = [[NSMutableAttributedString alloc]initWithString:maxPriceStr attributes:drawAttributes];
@@ -143,10 +139,8 @@
     CGContextFillEllipseInRect(context, CGRectMake(point.x-(radius/2.0), point.y-(radius/2.0), radius, radius));
     
     
-    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
-    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
-    drawAttributes[NSBackgroundColorAttributeName] = [UIColor whiteColor];
-    
+    NSDictionary * drawAttributes = self.highlightAttributedDic?:self.defaultAttributedDic;
+ 
     
     NSMutableAttributedString * leftMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:leftMarkerStr attributes:drawAttributes];
     
@@ -226,6 +220,14 @@
     }else{
         return [NSString stringWithFormat:@"%.0f ",volume/100000000.0];
     }
+}
+
+- (NSDictionary *)defaultAttributedDic
+{
+    if (!_defaultAttributedDic) {
+        _defaultAttributedDic = @{NSFontAttributeName:[UIFont systemFontOfSize:10],NSBackgroundColorAttributeName:self.gridBackgroundColor};
+    }
+    return _defaultAttributedDic;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

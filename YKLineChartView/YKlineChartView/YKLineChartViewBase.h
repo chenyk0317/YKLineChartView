@@ -29,6 +29,13 @@
 @property (nonatomic,assign)CGPoint highlightLineCurrentPoint;
 @property (nonatomic,assign)BOOL highlightLineCurrentEnabled;
 
+@property (nonatomic,strong)NSDictionary * leftYAxisAttributedDic;
+@property (nonatomic,strong)NSDictionary * xAxisAttributedDic;
+@property (nonatomic,strong)NSDictionary * highlightAttributedDic;
+@property (nonatomic,strong)NSDictionary * defaultAttributedDic;
+
+
+
 
 
 - (void)drawline:(CGContextRef)context
