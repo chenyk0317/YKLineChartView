@@ -180,7 +180,6 @@
 }
 - (CGFloat)contentBottom
 {
-    NSLog(@"%lf,%lf",_contentRect.origin.y,_contentRect.size.height);
     return _contentRect.origin.y + _contentRect.size.height;
 }
 - (CGFloat)contentWidth

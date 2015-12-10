@@ -26,12 +26,9 @@
 
 @property (nonatomic,assign)CGFloat lastPinScale;
 
-@property (nonatomic,assign)CGPoint lastLongPressPanPoint;
+@property (nonatomic,assign)CGPoint lastPanPoint;
 
 
-//@property (nonatomic,assign)NSInteger highlightLineCurrentIndex;
-//@property (nonatomic,assign)CGPoint highlightLineCurrentPoint;
-//@property (nonatomic,assign)BOOL highlightLineCurrentEnabled;
 
 @property (nonatomic,assign)BOOL isFirstDraw;
 @end
@@ -104,7 +101,6 @@
         }
         
     }
-    NSLog(@"%lf,%lf",self.minPrice,self.maxPrice);
 }
 
 - (void)drawRect:(CGRect)rect
@@ -289,18 +285,24 @@
     
     self.highlightLineCurrentEnabled = NO;
     CGPoint point = [recognizer translationInView:self];
-    NSLog(@"平移,%lf,%lf",point.x,point.y);
+    
+    CGFloat offset = point.x - self.lastPanPoint.x;
+    NSLog(@"平移,%lf",offset);
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
     }
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         if (point.x > 0) {
-            self.startDrawIndex -= point.x/self.candleWidth;
+            self.startDrawIndex -= offset/self.candleWidth;
         }else{
-            self.startDrawIndex += (-point.x)/self.candleWidth;
+            if (self.startDrawIndex + self.countOfshowCandle + (-offset)/self.candleWidth > self.dataSet.data.count) {
+                return;
+            }
+            self.startDrawIndex += (-offset)/self.candleWidth;
         }
         [self notifyDataSetChanged];
     }
+    self.lastPanPoint = point;
 }
 
 - (UIPinchGestureRecognizer *)pinGesture
@@ -312,7 +314,6 @@
 }
 - (void)handlePinGestureAction:(UIPinchGestureRecognizer *)recognizer
 {
-    NSLog(@"缩放");
     self.highlightLineCurrentEnabled = NO;
 
     recognizer.scale= recognizer.scale-self.lastPinScale + 1;
@@ -369,7 +370,6 @@
    
     self.highlightLineCurrentIndex = self.startDrawIndex + (NSInteger)((point.x - self.contentLeft)/self.candleWidth);
     [self setNeedsDisplay];
-    NSLog(@"%ld",self.highlightLineCurrentIndex);
 }
 
 - (UITapGestureRecognizer *)tapGesture
