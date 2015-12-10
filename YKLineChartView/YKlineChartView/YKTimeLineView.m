@@ -89,10 +89,10 @@
     
     
     [self drawGridBackground:context rect:rect];
+    [self drawTimeLabel:context];
     [self drawTimeLine:context];
     [self drawLabelPrice:context];
     
-    [self drawTimeLabel:context];
 
 }
 

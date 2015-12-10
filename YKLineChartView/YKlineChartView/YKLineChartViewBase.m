@@ -124,6 +124,7 @@
     if (nil == leftMarkerStr || nil == bottomMarkerStr) {
         return;
     }
+    bottomMarkerStr = [[@" " stringByAppendingString:bottomMarkerStr] stringByAppendingString:@" "];
     CGContextSetStrokeColorWithColor(context,color.CGColor);
     CGContextSetLineWidth(context, lineWidth);
     CGContextBeginPath(context);

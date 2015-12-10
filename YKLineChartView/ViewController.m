@@ -19,15 +19,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
  
-//    YKLineChartView * kline = [[YKLineChartView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
-//    
-//    kline.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:kline];
-//    kline.center = CGPointMake(200, 200);
-//    
-//    kline.frame = CGRectMake(0, 0, 400, 400);
-//    
-//    NSLog(@"0 === %d",[kline isInBoundsX:10]);
     NSLog(@"0 === %d",[self.TestView isInBoundsX:400]);
     
     NSString * path =[[NSBundle mainBundle]pathForResource:@"data.plist" ofType:nil];
