@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E1CC9EA11C17CA5200C84696 /* YKLineChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA01C17CA5200C84696 /* YKLineChartViewBase.m */; };
-		E1CC9EA41C17CA8500C84696 /* YKlineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */; };
+		E1CC9EA41C17CA8500C84696 /* YKLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA31C17CA8500C84696 /* YKLineChartView.m */; };
 		E1CC9EA71C17CAA600C84696 /* YKLineEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EA61C17CAA600C84696 /* YKLineEntity.m */; };
 		E1CC9EAA1C17F4D900C84696 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1CC9EA91C17F4D900C84696 /* data.plist */; };
 		E1CC9EB01C17FE8200C84696 /* YKLineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CC9EAF1C17FE8200C84696 /* YKLineDataSet.m */; };
@@ -44,8 +44,8 @@
 /* Begin PBXFileReference section */
 		E1CC9E9F1C17CA5200C84696 /* YKLineChartViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartViewBase.h; sourceTree = "<group>"; };
 		E1CC9EA01C17CA5200C84696 /* YKLineChartViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewBase.m; sourceTree = "<group>"; };
-		E1CC9EA21C17CA8500C84696 /* YKlineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKlineChartView.h; sourceTree = "<group>"; };
-		E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKlineChartView.m; sourceTree = "<group>"; };
+		E1CC9EA21C17CA8500C84696 /* YKLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartView.h; sourceTree = "<group>"; };
+		E1CC9EA31C17CA8500C84696 /* YKLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartView.m; sourceTree = "<group>"; };
 		E1CC9EA51C17CAA600C84696 /* YKLineEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineEntity.h; sourceTree = "<group>"; };
 		E1CC9EA61C17CAA600C84696 /* YKLineEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineEntity.m; sourceTree = "<group>"; };
 		E1CC9EA91C17F4D900C84696 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
@@ -71,7 +71,6 @@
 		E1E0A86B1C1959F100F21A0F /* YKTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKTimeLineView.m; sourceTree = "<group>"; };
 		E1E0A86D1C197A1900F21A0F /* YKViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKViewBase.h; sourceTree = "<group>"; };
 		E1E0A86E1C197A1900F21A0F /* YKViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKViewBase.m; sourceTree = "<group>"; };
-		E1E0A8701C198FC900F21A0F /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Header.h; path = ../../../Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,13 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				E1CC9EA91C17F4D900C84696 /* data.plist */,
-				E1E0A8701C198FC900F21A0F /* Header.h */,
 				E1E0A86D1C197A1900F21A0F /* YKViewBase.h */,
 				E1E0A86E1C197A1900F21A0F /* YKViewBase.m */,
 				E1CC9E9F1C17CA5200C84696 /* YKLineChartViewBase.h */,
 				E1CC9EA01C17CA5200C84696 /* YKLineChartViewBase.m */,
-				E1CC9EA21C17CA8500C84696 /* YKlineChartView.h */,
-				E1CC9EA31C17CA8500C84696 /* YKlineChartView.m */,
+				E1CC9EA21C17CA8500C84696 /* YKLineChartView.h */,
+				E1CC9EA31C17CA8500C84696 /* YKLineChartView.m */,
 				E1E0A86A1C1959F100F21A0F /* YKTimeLineView.h */,
 				E1E0A86B1C1959F100F21A0F /* YKTimeLineView.m */,
 				E1CC9EA51C17CAA600C84696 /* YKLineEntity.h */,
@@ -315,7 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1CC9EA11C17CA5200C84696 /* YKLineChartViewBase.m in Sources */,
-				E1CC9EA41C17CA8500C84696 /* YKlineChartView.m in Sources */,
+				E1CC9EA41C17CA8500C84696 /* YKLineChartView.m in Sources */,
 				E1CF05041C16C535002974B2 /* ViewController.m in Sources */,
 				E1E0A86F1C197A1900F21A0F /* YKViewBase.m in Sources */,
 				E1E0A86C1C1959F100F21A0F /* YKTimeLineView.m in Sources */,

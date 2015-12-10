@@ -1,14 +1,14 @@
 //
-//  YKlineChartView.m
+//  YKLineChartView.m
 //  YKLineChartView
 //
 //  Created by chenyk on 15/12/9.
 //  Copyright © 2015年 chenyk. All rights reserved.
 //
 
-#import "YKlineChartView.h"
+#import "YKLineChartView.h"
 #import "YKLineEntity.h"
-@interface YKlineChartView()
+@interface YKLineChartView()
 @property (nonatomic,strong)YKLineDataSet * dataSet;
 ;
 
@@ -35,7 +35,7 @@
 
 @property (nonatomic,assign)BOOL isFirstDraw;
 @end
-@implementation YKlineChartView
+@implementation YKLineChartView
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];

@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
  
-//    YKlineChartView * kline = [[YKlineChartView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
+//    YKLineChartView * kline = [[YKLineChartView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
 //    
 //    kline.backgroundColor = [UIColor redColor];
 //    [self.view addSubview:kline];

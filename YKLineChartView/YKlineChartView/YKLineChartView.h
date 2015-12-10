@@ -1,5 +1,5 @@
 //
-//  YKlineChartView.h
+//  YKLineChartView.h
 //  YKLineChartView
 //
 //  Created by chenyk on 15/12/9.
@@ -8,7 +8,7 @@
 
 #import "YKLineChartViewBase.h"
 #import "YKLineDataSet.h"
-@interface YKlineChartView : YKLineChartViewBase
+@interface YKLineChartView : YKLineChartViewBase
 
 
 @property (nonatomic,assign)CGFloat candleWidth;
