@@ -6,9 +6,9 @@
 //  Copyright © 2015年 chenyk. All rights reserved.
 //
 
-#import "YKlineChartViewBase.h"
+#import "YKLineChartViewBase.h"
 #import "YKLineDataSet.h"
-@interface YKlineChartView : YKlineChartViewBase
+@interface YKlineChartView : YKLineChartViewBase
 
 
 @property (nonatomic,assign)CGFloat candleWidth;

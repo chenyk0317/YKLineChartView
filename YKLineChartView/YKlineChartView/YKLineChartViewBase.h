@@ -1,5 +1,5 @@
 //
-//  YKlineChartViewBase.h
+//  YKLineChartViewBase.h
 //  YKLineChartView
 //
 //  Created by chenyk on 15/12/9.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YKViewBase.h"
-@interface YKlineChartViewBase : YKViewBase
+@interface YKLineChartViewBase : YKViewBase
 
 
 @property (nonatomic,assign) CGFloat uperChartHeightScale;

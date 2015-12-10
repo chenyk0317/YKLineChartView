@@ -1,21 +1,21 @@
 //
-//  YKlineChartViewBase.m
+//  YKLineChartViewBase.m
 //  YKLineChartView
 //
 //  Created by chenyk on 15/12/9.
 //  Copyright © 2015年 chenyk. All rights reserved.
 //
 
-#import "YKlineChartViewBase.h"
+#import "YKLineChartViewBase.h"
 
 #import "YKLineEntity.h"
-@interface YKlineChartViewBase()
+@interface YKLineChartViewBase()
 
 
 
 
 @end
-@implementation YKlineChartViewBase
+@implementation YKLineChartViewBase
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {

@@ -6,10 +6,10 @@
 //  Copyright © 2015年 chenyk. All rights reserved.
 //
 
-#import "YKlineChartViewBase.h"
+#import "YKLineChartViewBase.h"
 #import "YKLineDataSet.h"
 
-@interface YKTimeLineView : YKlineChartViewBase
+@interface YKTimeLineView : YKLineChartViewBase
 
 
 @property (nonatomic,assign)CGFloat offsetMaxPrice;
