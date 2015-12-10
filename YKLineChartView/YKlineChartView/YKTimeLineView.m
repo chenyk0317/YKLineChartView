@@ -217,7 +217,7 @@
     
     
     if (self.dataset.drawFilledEnabled) {
-        [self drawLinearGradient:context path:fillPath alpha:self.dataset.fillAlpha startColor:self.dataset.fillColor.CGColor endColor:[UIColor whiteColor].CGColor];
+        [self drawLinearGradient:context path:fillPath alpha:self.dataset.fillAlpha startColor:self.dataset.fillStartColor.CGColor endColor:self.dataset.fillStopColor.CGColor];
     }
     CGPathRelease(fillPath);
  

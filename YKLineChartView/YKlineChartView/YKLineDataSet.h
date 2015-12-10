@@ -36,7 +36,8 @@
 @property (nonatomic,strong)UIColor * volumeTieColor;
 
 @property (nonatomic,assign)BOOL drawFilledEnabled;
-@property (nonatomic,strong)UIColor * fillColor;
+@property (nonatomic,strong)UIColor * fillStartColor;
+@property (nonatomic,strong)UIColor * fillStopColor;
 @property (nonatomic,assign)CGFloat fillAlpha;
 
 

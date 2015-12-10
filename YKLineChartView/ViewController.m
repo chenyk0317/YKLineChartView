@@ -45,19 +45,19 @@
     [array addObjectsFromArray:array];
     YKLineDataSet * dataset = [[YKLineDataSet alloc]init];
     dataset.data = array;
-    dataset.highlightLineColor = [UIColor redColor];
-    dataset.highlightLineWidth = 0.5;
-    dataset.candleRiseColor = [UIColor redColor];
-    dataset.candleFallColor = [UIColor greenColor];
+    dataset.highlightLineColor = [UIColor colorWithRed:60/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
+    dataset.highlightLineWidth = 0.7;
+    dataset.candleRiseColor = [UIColor colorWithRed:233/255.0 green:47/255.0 blue:68/255.0 alpha:1.0];
+    dataset.candleFallColor = [UIColor colorWithRed:33/255.0 green:179/255.0 blue:77/255.0 alpha:1.0];
     dataset.avgLineWidth = 1.f;
-    dataset.avgMA10Color = [UIColor orangeColor];
-    dataset.avgMA5Color = [UIColor blueColor];
-    dataset.avgMA20Color = [UIColor purpleColor];
+    dataset.avgMA10Color = [UIColor colorWithRed:252/255.0 green:85/255.0 blue:198/255.0 alpha:1.0];
+    dataset.avgMA5Color = [UIColor colorWithRed:67/255.0 green:85/255.0 blue:109/255.0 alpha:1.0];
+    dataset.avgMA20Color = [UIColor colorWithRed:216/255.0 green:192/255.0 blue:44/255.0 alpha:1.0];
     dataset.candleTopBottmLineWidth = 1;
     
     [self.TestView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
-    self.TestView.gridBackgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.TestView.borderColor = [UIColor grayColor];
+    self.TestView.gridBackgroundColor = [UIColor whiteColor];
+    self.TestView.borderColor = [UIColor colorWithRed:203/255.0 green:215/255.0 blue:224/255.0 alpha:1.0];
     self.TestView.borderWidth = .5;
     self.TestView.candleWidth = 8;
     self.TestView.candleMaxWidth = 30;
@@ -81,7 +81,7 @@
     }
 
     [self.timeView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
-    self.timeView.gridBackgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.timeView.gridBackgroundColor = [UIColor whiteColor];
     self.timeView.borderColor = [UIColor grayColor];
     self.timeView.borderWidth = .5;
     self.timeView.uperChartHeightScale = 0.7;
@@ -90,18 +90,19 @@
     
     YKTimeDataset * set  = [[YKTimeDataset alloc]init];
     set.data = timeArray;
-    set.avgLineCorlor = [UIColor redColor];
-    set.priceLineCorlor = [UIColor blueColor];
+    set.avgLineCorlor = [UIColor colorWithRed:253/255.0 green:179/255.0 blue:8/255.0 alpha:1.0];
+    set.priceLineCorlor = [UIColor colorWithRed:24/255.0 green:96/255.0 blue:254/255.0 alpha:1.0];
     set.lineWidth = 1.f;
-    set.highlightLineWidth = .5f;
-    set.highlightLineColor = [UIColor redColor];
+    set.highlightLineWidth = .8f;
+    set.highlightLineColor = [UIColor colorWithRed:60/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
     
     set.volumeTieColor = [UIColor grayColor];
-    set.volumeRiseColor = [UIColor redColor];
-    set.volumeFallColor = [UIColor greenColor];
+    set.volumeRiseColor = [UIColor colorWithRed:233/255.0 green:47/255.0 blue:68/255.0 alpha:1.0];
+    set.volumeFallColor = [UIColor colorWithRed:33/255.0 green:179/255.0 blue:77/255.0 alpha:1.0];
     
-    set.fillColor = [UIColor orangeColor];
-    set.fillAlpha = .3;
+    set.fillStartColor = [UIColor colorWithRed:24/255.0 green:96/255.0 blue:254/255.0 alpha:1.0];
+    set.fillStopColor = [UIColor whiteColor];
+    set.fillAlpha = .5f;
     set.drawFilledEnabled = YES;
     [self.timeView setupData:set];
     

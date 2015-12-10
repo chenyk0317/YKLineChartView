@@ -165,11 +165,10 @@
     [self drawLabel:context attributesText:ma5StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma5StrAttSize.width, ma5StrAttSize.height)];
     startP.x += (ma5StrAttSize.width + space);
     
-    
-    
     CGContextSetFillColorWithColor(context, self.dataSet.avgMA10Color.CGColor);
     CGContextFillEllipseInRect(context, CGRectMake(startP.x+(radius/2.0), startP.y+(radius/2.0), radius, radius));
     startP.x += (radius+space);
+    
 
     NSString * ma10Str = [NSString stringWithFormat:@"MA10:%.2f",entity.ma10];
     NSMutableAttributedString * ma10StrAtt = [[NSMutableAttributedString alloc]initWithString:ma10Str attributes:drawAttributes];
@@ -177,15 +176,14 @@
     [self drawLabel:context attributesText:ma10StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma10StrAttSize.width, ma10StrAttSize.height)];
     startP.x += (ma5StrAttSize.width + space);
     
-    CGContextSetFillColorWithColor(context, self.dataSet.avgMA10Color.CGColor);
+    
+    CGContextSetFillColorWithColor(context, self.dataSet.avgMA20Color.CGColor);
     CGContextFillEllipseInRect(context, CGRectMake(startP.x+(radius/2.0), startP.y+(radius/2.0), radius, radius));
     
     startP.x += (radius+space);
-    
     NSString * ma20Str = [NSString stringWithFormat:@"MA20:%.2f",entity.ma20];
     NSMutableAttributedString * ma20StrAtt = [[NSMutableAttributedString alloc]initWithString:ma20Str attributes:drawAttributes];
     CGSize ma20StrAttSize = [ma20StrAtt size];
-    CGContextSetFillColorWithColor(context, self.dataSet.avgMA20Color.CGColor);
     [self drawLabel:context attributesText:ma20StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma20StrAttSize.width, ma20StrAttSize.height)];
     
 }
@@ -321,7 +319,7 @@
     ;
     self.candleWidth = recognizer.scale * self.candleWidth;
     
-    if(self.candleWidth > self.candleWidth){
+    if(self.candleWidth > self.candleMaxWidth){
         self.candleWidth = self.candleMaxWidth;
     }
     if(self.candleWidth < self.candleMinWidth){
