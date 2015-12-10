@@ -260,6 +260,9 @@
                 
                 [self drawHighlighted:context point:CGPointMake(startX, close)idex:idex value:entity color:self.dataSet.highlightLineColor lineWidth:self.dataSet.highlightLineWidth];
                 [self drawAvgMarker:context idex:i];
+                if ([self.delegate respondsToSelector:@selector(chartValueSelected:entry:entryIndex:) ]) {
+                    [self.delegate chartValueSelected:self entry:entity entryIndex:i];
+                }
             }
         }
         
@@ -375,17 +378,19 @@
 - (UITapGestureRecognizer *)tapGesture
 {
     if (!_tapGesture) {
-        _tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongTapGestureAction:)];
+        _tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTapGestureAction:)];
     }
     return _tapGesture;
 }
-- (void)handleLongTapGestureAction:(UITapGestureRecognizer *)recognizer
+- (void)handleTapGestureAction:(UITapGestureRecognizer *)recognizer
 {
     if (self.highlightLineCurrentEnabled) {
         self.highlightLineCurrentEnabled = NO;
     }
     [self setNeedsDisplay];
 }
+
+
 - (void)notifyDataSetChanged
 {
     [super notifyDataSetChanged];

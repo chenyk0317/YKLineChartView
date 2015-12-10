@@ -209,6 +209,10 @@
                     entity = [self.dataset.data objectAtIndex:i];
                 }
                 [self drawHighlighted:context point:CGPointMake(startX, yPrice) idex:i value:entity color:self.dataset.highlightLineColor lineWidth:self.dataset.highlightLineWidth ];
+                
+                if ([self.delegate respondsToSelector:@selector(chartValueSelected:entry:entryIndex:) ]) {
+                    [self.delegate chartValueSelected:self entry:entity entryIndex:i];
+                }
             }
         }
         

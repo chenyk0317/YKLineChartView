@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "YKLineEntity.h"
 #import "YKLineDataSet.h"
-@interface ViewController ()
+@interface ViewController ()<YKLineChartViewDelegate>
 
 @end
 
@@ -63,6 +63,7 @@
     self.TestView.candleMinWidth = 1;
     self.TestView.uperChartHeightScale = 0.7;
     self.TestView.xAxisHeitht = 25;
+    self.TestView.delegate = self;
     [self.TestView setupData:dataset];
     
     
@@ -103,13 +104,22 @@
     set.fillStopColor = [UIColor whiteColor];
     set.fillAlpha = .5f;
     set.drawFilledEnabled = YES;
+    self.timeView.delegate = self;
     [self.timeView setupData:set];
     
 
 }
 
+-(void)chartValueSelected:(YKViewBase *)chartView entry:(id)entry entryIndex:(NSInteger)entryIndex
+{
+    NSLog(@"%@",entry);
+    NSLog(@"%ld",entryIndex);
+}
 
-
+- (void)chartValueNothingSelected:(YKViewBase *)chartView
+{
+    NSLog(@"十字线消失");
+}
 /*
 - (UIPanGestureRecognizer *)panGesture
 {

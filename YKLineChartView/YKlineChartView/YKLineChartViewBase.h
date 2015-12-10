@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "YKViewBase.h"
+
+
+@protocol YKLineChartViewDelegate <NSObject>
+
+@optional
+- (void)chartValueSelected:(YKViewBase *)chartView entry:(id)entry entryIndex:(NSInteger)entryIndex;
+- (void)chartValueNothingSelected:(YKViewBase *)chartView;
+
+
+@end
+
 @interface YKLineChartViewBase : YKViewBase
 
 
@@ -35,7 +46,7 @@
 @property (nonatomic,strong)NSDictionary * defaultAttributedDic;
 
 
-
+@property (nonatomic,assign)id<YKLineChartViewDelegate>  delegate;
 
 
 - (void)drawline:(CGContextRef)context

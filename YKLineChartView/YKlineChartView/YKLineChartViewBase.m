@@ -229,6 +229,19 @@
     }
     return _defaultAttributedDic;
 }
+
+- (void)setHighlightLineCurrentEnabled:(BOOL)highlightLineCurrentEnabled
+{
+    
+    if (_highlightLineCurrentEnabled != highlightLineCurrentEnabled) {
+        _highlightLineCurrentEnabled = highlightLineCurrentEnabled;
+        if ( NO == highlightLineCurrentEnabled) {
+            if ([self.delegate respondsToSelector:@selector(chartValueNothingSelected:)]) {
+                [self.delegate chartValueNothingSelected:self];
+            }
+        }
+    }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
