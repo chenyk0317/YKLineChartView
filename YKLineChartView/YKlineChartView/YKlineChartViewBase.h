@@ -7,49 +7,59 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YKViewBase.h"
+@interface YKlineChartViewBase : YKViewBase
 
-@interface YKlineChartViewBase : UIView
 
-
-@property (nonatomic,assign) CGRect contentRect;
 @property (nonatomic,assign) CGFloat uperChartHeightScale;
 @property (nonatomic,assign) CGFloat xAxisHeitht;
-@property (nonatomic,assign) CGFloat chartHeight;
-@property (nonatomic,assign) CGFloat chartWidth;
+
 @property (nonatomic,strong) UIColor *gridBackgroundColor;
 @property (nonatomic,strong) UIColor *borderColor;
 @property (nonatomic,assign) CGFloat borderWidth;
 
 
-- (void)setupChartOffsetWithLeft:(CGFloat)left
-                             top:(CGFloat)top
-                           right:(CGFloat)right
-                          bottom:(CGFloat)bottom;
+@property (nonatomic,assign)CGFloat maxPrice;
+@property (nonatomic,assign)CGFloat minPrice;
+@property (nonatomic,assign)CGFloat maxVolume;
+@property (nonatomic,assign)CGFloat candleCoordsScale;
+@property (nonatomic,assign)CGFloat volumeCoordsScale;
 
-- (void)commonInit;
+@property (nonatomic,assign)NSInteger highlightLineCurrentIndex;
+@property (nonatomic,assign)CGPoint highlightLineCurrentPoint;
+@property (nonatomic,assign)BOOL highlightLineCurrentEnabled;
 
-- (void)notifyDataSetChanged;
 
-- (void)notifyDeviceOrientationChanged;
-- (BOOL)isInBoundsX:(CGFloat)x;
 
-- (BOOL)isInBoundsY:(CGFloat)y;
+- (void)drawline:(CGContextRef)context
+      startPoint:(CGPoint)startPoint
+       stopPoint:(CGPoint)stopPoint
+           color:(UIColor *)color
+       lineWidth:(CGFloat)lineWitdth;
 
-- (BOOL)isInBoundsX:(CGFloat)x
-                  y:(CGFloat)y;
+- (void)drawLabelPrice:(CGContextRef)context;
 
-- (BOOL)isInBoundsLeft:(CGFloat)x;
-- (BOOL)isInBoundsRight:(CGFloat)x;
 
-- (BOOL)isInBoundsTop:(CGFloat)y;
+- (void)drawHighlighted:(CGContextRef)context
+                  point:(CGPoint)point
+                   idex:(NSInteger)idex
+                  value:(id)value
+                  color:(UIColor *)color
+              lineWidth:(CGFloat)lineWidth;
 
-- (BOOL)isInBoundsBottom:(CGFloat)y;
 
-- (CGFloat)contentTop;
-- (CGFloat)contentLeft;
-- (CGFloat)contentRight;
-- (CGFloat)contentBottom;
-- (CGFloat)contentWidth;
-- (CGFloat)contentHeight;
+- (void)drawLabel:(CGContextRef)context
+   attributesText:(NSAttributedString *)attributesText
+             rect:(CGRect)rect;
+
+- (void)drawRect:(CGContextRef)context
+            rect:(CGRect)rect
+           color:(UIColor*)color;
+
+
+- (void)drawGridBackground:(CGContextRef)context
+                      rect:(CGRect)rect;
+
+
 
 @end

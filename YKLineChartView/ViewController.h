@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "YKlineChartView.h"
+#import "YKTimeLineView.h"
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet YKlineChartView *TestView;
+@property (weak, nonatomic) IBOutlet YKTimeLineView *timeView;
 
 @end
 

@@ -10,22 +10,30 @@
 #import "YKLineEntity.h"
 @interface YKlineChartView()
 @property (nonatomic,strong)YKLineDataSet * dataSet;
-@property (nonatomic,assign)CGFloat maxPrice;
-@property (nonatomic,assign)CGFloat minPrice;
+;
 
-@property (nonatomic,assign)CGFloat maxVolume;
 
-@property (nonatomic,assign)CGFloat candleWidth;
 
-@property (nonatomic,assign)CGFloat candleCoordsScale;
-@property (nonatomic,assign)CGFloat volumeCoordsScale;
 
 @property (nonatomic,assign)NSInteger countOfshowCandle;
 
 @property (nonatomic,assign)NSInteger  startDrawIndex;
 
 @property (nonatomic,strong)UIPanGestureRecognizer * panGesture;
+@property (nonatomic,strong)UIPinchGestureRecognizer * pinGesture;
+@property (nonatomic,strong)UILongPressGestureRecognizer * longPressGesture;
+@property (nonatomic,strong)UITapGestureRecognizer * tapGesture;
 
+@property (nonatomic,assign)CGFloat lastPinScale;
+
+@property (nonatomic,assign)CGPoint lastLongPressPanPoint;
+
+
+//@property (nonatomic,assign)NSInteger highlightLineCurrentIndex;
+//@property (nonatomic,assign)CGPoint highlightLineCurrentPoint;
+//@property (nonatomic,assign)BOOL highlightLineCurrentEnabled;
+
+@property (nonatomic,assign)BOOL isFirstDraw;
 @end
 @implementation YKlineChartView
 
@@ -51,8 +59,11 @@
     
     [super commonInit];
     self.candleCoordsScale = 0.f;
-    self.candleWidth = 5.f;
+    
     [self addGestureRecognizer:self.panGesture];
+    [self addGestureRecognizer:self.pinGesture];
+    [self addGestureRecognizer:self.longPressGesture];
+    [self addGestureRecognizer:self.tapGesture];
 }
 - (NSInteger)countOfshowCandle{
     return self.contentWidth/(self.candleWidth);
@@ -74,11 +85,10 @@
 }
 - (void)setCurrentDataMaxAndMin
 {
-    
-    if (0 == self.startDrawIndex) {
+    if (!self.isFirstDraw) {
         self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
+        self.isFirstDraw = YES;
     }
-    
     
     if (self.dataSet.data.count > 0) {
         self.maxPrice = CGFLOAT_MIN;
@@ -92,6 +102,7 @@
             self.maxPrice = self.maxPrice > entity.high ? self.maxPrice : entity.high;
             self.maxVolume = self.maxVolume >entity.volume ? self.maxVolume : entity.volume;
         }
+        
     }
     NSLog(@"%lf,%lf",self.minPrice,self.maxPrice);
 }
@@ -104,31 +115,80 @@
 
     CGContextRef optionalContext = UIGraphicsGetCurrentContext();
     
+    
+    
     [self drawGridBackground:optionalContext rect:rect];
     
     //[self drawHighlighted:optionalContext point:CGPointMake(50, 50)];
+    
+    
+    [self drawLabelPrice:optionalContext];
+    
+    
+
     [self drawCandle:optionalContext];
-    
-}
 
-- (void)drawGridBackground:(CGContextRef)context
-                      rect:(CGRect)rect;
+}
+- (void)drawGridBackground:(CGContextRef)context rect:(CGRect)rect
 {
-    
-    CGContextSetFillColorWithColor(context, self.gridBackgroundColor.CGColor);
-    CGContextFillRect(context, rect);
-    
-    //画边框
-    CGContextSetLineWidth(context, self.borderWidth);
-    CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
-    CGContextStrokeRect(context, CGRectMake(self.contentLeft, self.contentTop, self.contentWidth, (self.uperChartHeightScale * self.contentHeight)));
-    CGContextStrokeRect(context, CGRectMake(self.contentLeft, (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, self.contentWidth, (self.contentBottom - (self.uperChartHeightScale * self.contentHeight)-self.xAxisHeitht)));
-    
-    //画中间的线
-    [self drawline:context startPoint:CGPointMake(self.contentLeft,(self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop) stopPoint:CGPointMake(self.contentRight, (self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop) color:self.borderColor lineWidth:self.borderWidth/2.0];
-
+    [super drawGridBackground:context rect:rect];
 }
 
+
+
+
+- (void)drawAvgMarker:(CGContextRef)context
+                 idex:(NSInteger)idex
+{
+    YKLineEntity  * entity;
+    if (0 == idex) {
+        entity = [self.dataSet.data lastObject];
+    }else{
+        entity = self.dataSet.data[idex];
+    }
+    
+    
+    NSMutableDictionary * drawAttributes = [@{} mutableCopy];
+    drawAttributes[NSFontAttributeName] = [UIFont systemFontOfSize:9];
+    
+    CGFloat radius = 8.0;
+    CGFloat space = 4.0;
+    CGPoint startP = CGPointMake(self.contentLeft, self.contentTop);
+    
+    CGContextSetFillColorWithColor(context, self.dataSet.avgMA5Color.CGColor);
+    CGContextFillEllipseInRect(context, CGRectMake(startP.x+(radius/2.0), startP.y+(radius/2.0), radius, radius));
+    
+    startP.x += (radius+space);
+    NSString * ma5Str = [NSString stringWithFormat:@"MA5:%.2f",entity.ma5];
+    NSMutableAttributedString * ma5StrAtt = [[NSMutableAttributedString alloc]initWithString:ma5Str attributes:drawAttributes];
+    CGSize ma5StrAttSize = [ma5StrAtt size];
+    [self drawLabel:context attributesText:ma5StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma5StrAttSize.width, ma5StrAttSize.height)];
+    startP.x += (ma5StrAttSize.width + space);
+    
+    
+    
+    CGContextSetFillColorWithColor(context, self.dataSet.avgMA10Color.CGColor);
+    CGContextFillEllipseInRect(context, CGRectMake(startP.x+(radius/2.0), startP.y+(radius/2.0), radius, radius));
+    startP.x += (radius+space);
+
+    NSString * ma10Str = [NSString stringWithFormat:@"MA10:%.2f",entity.ma10];
+    NSMutableAttributedString * ma10StrAtt = [[NSMutableAttributedString alloc]initWithString:ma10Str attributes:drawAttributes];
+    CGSize ma10StrAttSize = [ma10StrAtt size];
+    [self drawLabel:context attributesText:ma10StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma10StrAttSize.width, ma10StrAttSize.height)];
+    startP.x += (ma5StrAttSize.width + space);
+    
+    CGContextSetFillColorWithColor(context, self.dataSet.avgMA10Color.CGColor);
+    CGContextFillEllipseInRect(context, CGRectMake(startP.x+(radius/2.0), startP.y+(radius/2.0), radius, radius));
+    
+    startP.x += (radius+space);
+    
+    NSString * ma20Str = [NSString stringWithFormat:@"MA20:%.2f",entity.ma20];
+    NSMutableAttributedString * ma20StrAtt = [[NSMutableAttributedString alloc]initWithString:ma20Str attributes:drawAttributes];
+    CGSize ma20StrAttSize = [ma20StrAtt size];
+    CGContextSetFillColorWithColor(context, self.dataSet.avgMA20Color.CGColor);
+    [self drawLabel:context attributesText:ma20StrAtt rect:CGRectMake(startP.x, startP.y+radius/3.0, ma20StrAttSize.width, ma20StrAttSize.height)];
+    
+}
 - (void)drawCandle:(CGContextRef)context
 {
     CGContextSaveGState(context);
@@ -170,6 +230,7 @@
             [self drawRect:context rect:CGRectMake(left, close, candleWidth, open-close) color:color];
             [self drawline:context startPoint:CGPointMake(startX, high) stopPoint:CGPointMake(startX, low) color:color lineWidth:self.dataSet.candleTopBottmLineWidth];
         }
+        
        
         
         if (i > 0){
@@ -193,57 +254,29 @@
         CGFloat volume = ((entity.volume - 0) * self.volumeCoordsScale);
         [self drawRect:context rect:CGRectMake(left, self.contentBottom - volume , candleWidth, volume) color:color];
         
+        //十字线
+        if (self.highlightLineCurrentEnabled) {
+            if (i == self.highlightLineCurrentIndex) {
+                
+                YKLineEntity * entity;
+                if (idex < self.dataSet.data.count) {
+                    entity = [self.dataSet.data objectAtIndex:idex];
+                }
+                
+                [self drawHighlighted:context point:CGPointMake(startX, close)idex:idex value:entity color:self.dataSet.highlightLineColor lineWidth:self.dataSet.highlightLineWidth];
+                [self drawAvgMarker:context idex:i];
+            }
+        }
+        
+        
     }
-
-
+    
+    if (!self.highlightLineCurrentEnabled) {
+        [self drawAvgMarker:context idex:0];
+    }
     CGContextRestoreGState(context);
 }
 
-- (void)drawRect:(CGContextRef)context
-            rect:(CGRect)rect
-           color:(UIColor*)color
-{
-    if ((rect.origin.x + rect.size.width) > self.contentRight) {
-        return;
-    }
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, rect);
-}
-
-- (void)drawline:(CGContextRef)context
-      startPoint:(CGPoint)startPoint
-       stopPoint:(CGPoint)stopPoint
-           color:(UIColor *)color
-       lineWidth:(CGFloat)lineWitdth
-{
-    if (startPoint.x < self.contentLeft ||stopPoint.x >self.contentRight || startPoint.y <self.contentTop || stopPoint.y < self.contentTop) {
-        return;
-    }
-    CGContextSetStrokeColorWithColor(context, color.CGColor);
-    CGContextSetLineWidth(context, lineWitdth);
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, startPoint.x, startPoint.y);
-    CGContextAddLineToPoint(context, stopPoint.x,stopPoint.y);
-    CGContextStrokePath(context);
-}
-
-- (void)drawHighlighted:(CGContextRef)context
-                point:(CGPoint)point
-{
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextSetLineWidth(context, .5);
-    
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, point.x, self.contentTop);
-    CGContextAddLineToPoint(context, point.x, self.contentBottom);
-    CGContextStrokePath(context);
-    
-    
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, self.contentLeft, point.y);
-    CGContextAddLineToPoint(context, self.contentRight, point.y);
-    CGContextStrokePath(context);
-}
 
 - (UIPanGestureRecognizer *)panGesture
 {
@@ -255,6 +288,7 @@
 - (void)handlePanGestureAction:(UIPanGestureRecognizer *)recognizer
 {
     
+    self.highlightLineCurrentEnabled = NO;
     CGPoint point = [recognizer translationInView:self];
     NSLog(@"平移,%lf,%lf",point.x,point.y);
     if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -268,6 +302,90 @@
         }
         [self notifyDataSetChanged];
     }
+}
+
+- (UIPinchGestureRecognizer *)pinGesture
+{
+    if (!_pinGesture) {
+        _pinGesture = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinGestureAction:)];
+        }
+    return _pinGesture;
+}
+- (void)handlePinGestureAction:(UIPinchGestureRecognizer *)recognizer
+{
+    NSLog(@"缩放");
+    self.highlightLineCurrentEnabled = NO;
+
+    recognizer.scale= recognizer.scale-self.lastPinScale + 1;
+    
+    ;
+    self.candleWidth = recognizer.scale * self.candleWidth;
+    
+    if(self.candleWidth > self.candleWidth){
+        self.candleWidth = self.candleMaxWidth;
+    }
+    if(self.candleWidth < self.candleMinWidth){
+        self.candleWidth = self.candleMinWidth;
+    }
+    [self notifyDataSetChanged];
+    self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
+    self.lastPinScale = recognizer.scale;
+}
+
+- (UILongPressGestureRecognizer *)longPressGesture
+{
+    if (!_longPressGesture) {
+        _longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPressGestureAction:)];
+        _longPressGesture.minimumPressDuration = 0.5;
+    }
+    return _longPressGesture;
+}
+- (void)handleLongPressGestureAction:(UIPanGestureRecognizer *)recognizer
+{
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint  point = [recognizer locationInView:self];
+        
+        if (point.x > self.contentLeft && point.x < self.contentRight && point.y >self.contentTop && point.y<self.contentBottom) {
+            self.highlightLineCurrentEnabled = YES;
+            [self getHighlightByTouchPoint:point];
+        }
+    }
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+    }
+    if (recognizer.state == UIGestureRecognizerStateChanged) {
+        
+        CGPoint  point = [recognizer locationInView:self];
+        
+        if (point.x > self.contentLeft && point.x < self.contentRight && point.y >self.contentTop && point.y<self.contentBottom) {
+            self.highlightLineCurrentEnabled = YES;
+            [self getHighlightByTouchPoint:point];
+        }
+    }
+}
+
+- (void)getHighlightByTouchPoint:(CGPoint) point
+{
+   
+    self.highlightLineCurrentIndex = self.startDrawIndex + (NSInteger)((point.x - self.contentLeft)/self.candleWidth);
+    [self setNeedsDisplay];
+    NSLog(@"%ld",self.highlightLineCurrentIndex);
+}
+
+- (UITapGestureRecognizer *)tapGesture
+{
+    if (!_tapGesture) {
+        _tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongTapGestureAction:)];
+    }
+    return _tapGesture;
+}
+- (void)handleLongTapGestureAction:(UITapGestureRecognizer *)recognizer
+{
+    if (self.highlightLineCurrentEnabled) {
+        self.highlightLineCurrentEnabled = NO;
+    }
+    [self setNeedsDisplay];
 }
 - (void)notifyDataSetChanged
 {

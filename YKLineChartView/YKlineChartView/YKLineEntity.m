@@ -11,3 +11,9 @@
 @implementation YKLineEntity
 
 @end
+
+@implementation YKTimeLineEntity
+
+
+
+@end

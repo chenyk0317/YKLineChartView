@@ -34,6 +34,7 @@
     NSArray * sourceArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data"];
     NSMutableArray * array = [NSMutableArray array];
     for (NSDictionary * dic in sourceArray) {
+        
         YKLineEntity * entity = [[YKLineEntity alloc]init];
         entity.high = [dic[@"high_px"] doubleValue];
         entity.open = [dic[@"open_px"] doubleValue];
@@ -48,6 +49,7 @@
         entity.ma20 = [dic[@"avg20"] doubleValue];
         entity.volume = [dic[@"total_volume_trade"] doubleValue];
         [array addObject:entity];
+        //YTimeLineEntity * entity = [[YTimeLineEntity alloc]init];
     }
     [array addObjectsFromArray:array];
     YKLineDataSet * dataset = [[YKLineDataSet alloc]init];
@@ -61,13 +63,56 @@
     dataset.avgMA5Color = [UIColor blueColor];
     dataset.avgMA20Color = [UIColor purpleColor];
     dataset.candleTopBottmLineWidth = 1;
-    self.TestView.uperChartHeightScale = 0.7;
-    self.TestView.xAxisHeitht = 25;
+    
     [self.TestView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
     self.TestView.gridBackgroundColor = [UIColor groupTableViewBackgroundColor];
     self.TestView.borderColor = [UIColor grayColor];
     self.TestView.borderWidth = .5;
+    self.TestView.candleWidth = 8;
+    self.TestView.candleMaxWidth = 30;
+    self.TestView.candleMinWidth = 1;
+    self.TestView.uperChartHeightScale = 0.7;
+    self.TestView.xAxisHeitht = 25;
     [self.TestView setupData:dataset];
+    
+    
+    NSArray * sourceArray2 = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data4"];
+    NSMutableArray * timeArray = [NSMutableArray array];
+    for (NSDictionary * dic in sourceArray2) {
+        YKTimeLineEntity * e = [[YKTimeLineEntity alloc]init];
+        e.currtTime = dic[@"curr_time"];
+        e.preClosePx = [dic[@"pre_close_px"] doubleValue];
+        e.avgPirce = [dic[@"avg_pirce"] doubleValue];
+        e.lastPirce = [dic[@"last_px"]doubleValue];
+        e.volume = [dic[@"last_volume_trade"]doubleValue];
+        e.rate = dic[@"rise_and_fall_rate"];
+        [timeArray addObject:e];
+    }
+
+    [self.timeView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
+    self.timeView.gridBackgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.timeView.borderColor = [UIColor grayColor];
+    self.timeView.borderWidth = .5;
+    self.timeView.uperChartHeightScale = 0.7;
+    self.timeView.xAxisHeitht = 25;
+    self.timeView.countOfTimes = 242;
+    
+    YKTimeDataset * set  = [[YKTimeDataset alloc]init];
+    set.data = timeArray;
+    set.avgLineCorlor = [UIColor redColor];
+    set.priceLineCorlor = [UIColor blueColor];
+    set.lineWidth = 1.f;
+    set.highlightLineWidth = .5f;
+    set.highlightLineColor = [UIColor redColor];
+    
+    set.volumeTieColor = [UIColor grayColor];
+    set.volumeRiseColor = [UIColor redColor];
+    set.volumeFallColor = [UIColor greenColor];
+    
+    set.fillColor = [UIColor orangeColor];
+    set.fillAlpha = .3;
+    set.drawFilledEnabled = YES;
+    [self.timeView setupData:set];
     
 
 }

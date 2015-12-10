@@ -19,8 +19,25 @@
 @property (nonatomic,strong)UIColor * avgMA20Color;
 @property (nonatomic,assign)CGFloat  avgLineWidth;
 @property (nonatomic,assign)CGFloat candleTopBottmLineWidth;
-@property (nonatomic,assign)CGFloat candleWidth;
-@property (nonatomic,assign)CGFloat candleMaxWidth;
-@property (nonatomic,assign)CGFloat candleMinWidth;
+
+@end
+
+
+@interface YKTimeDataset : NSObject
+@property (nonatomic,strong)NSMutableArray * data;
+@property (nonatomic,assign)CGFloat highlightLineWidth;
+@property (nonatomic,strong)UIColor  * highlightLineColor;
+@property (nonatomic,assign)CGFloat  lineWidth;
+@property (nonatomic,strong)UIColor * priceLineCorlor;
+@property (nonatomic,strong)UIColor * avgLineCorlor;
+
+@property (nonatomic,strong)UIColor * volumeRiseColor;
+@property (nonatomic,strong)UIColor * volumeFallColor;
+@property (nonatomic,strong)UIColor * volumeTieColor;
+
+@property (nonatomic,assign)BOOL drawFilledEnabled;
+@property (nonatomic,strong)UIColor * fillColor;
+@property (nonatomic,assign)CGFloat fillAlpha;
+
 
 @end

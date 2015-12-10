@@ -22,3 +22,16 @@
 @property (nonatomic,assign)CGFloat ma20;
 
 @end
+
+
+@interface YKTimeLineEntity : NSObject
+@property (nonatomic,strong)NSString * currtTime;
+@property (nonatomic,assign)CGFloat preClosePx;
+@property (nonatomic,assign)CGFloat avgPirce;
+@property (nonatomic,assign)CGFloat lastPirce;
+@property (nonatomic,assign)CGFloat totalVolume;
+@property (nonatomic,assign)CGFloat volume;
+@property (nonatomic,assign)CGFloat trade;
+@property (nonatomic,strong)NSString * rate;
+
+@end
