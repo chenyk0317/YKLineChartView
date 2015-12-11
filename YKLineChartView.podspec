@@ -17,17 +17,12 @@ Pod::Spec.new do |s|
 
   s.name         = "YKLineChartView"
   s.version      = "0.0.1"
-  s.summary      = "A short description of YKLineChartView."
+  s.summary      = "A stock chart of iOS "
 
   s.description  = <<-DESC
                    A longer description of YKLineChartView in Markdown format.
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
-
+                   * Think: Why did you w
   s.homepage     = "http://EXAMPLE/YKLineChartView"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
