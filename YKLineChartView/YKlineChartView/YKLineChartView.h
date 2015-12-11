@@ -7,7 +7,8 @@
 //
 
 #import "YKLineChartViewBase.h"
-#import "YKLineDataSet.h"
+
+@class  YKLineDataSet;
 @interface YKLineChartView : YKLineChartViewBase
 
 

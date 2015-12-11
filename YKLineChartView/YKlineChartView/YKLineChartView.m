@@ -7,6 +7,7 @@
 //
 
 #import "YKLineChartView.h"
+#import "YKLineDataSet.h"
 #import "YKLineEntity.h"
 @interface YKLineChartView()
 @property (nonatomic,strong)YKLineDataSet * dataSet;

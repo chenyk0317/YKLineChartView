@@ -82,7 +82,7 @@
 
     [self.timeView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
     self.timeView.gridBackgroundColor = [UIColor whiteColor];
-    self.timeView.borderColor = [UIColor grayColor];
+    self.timeView.borderColor = [UIColor colorWithRed:203/255.0 green:215/255.0 blue:224/255.0 alpha:1.0];
     self.timeView.borderWidth = .5;
     self.timeView.uperChartHeightScale = 0.7;
     self.timeView.xAxisHeitht = 25;
