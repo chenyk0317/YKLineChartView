@@ -43,8 +43,8 @@
 - (void)drawGridBackground:(CGContextRef)context
                       rect:(CGRect)rect;
 {
-    
-    CGContextSetFillColorWithColor(context, self.gridBackgroundColor.CGColor);
+    UIColor * backgroundColor = self.gridBackgroundColor?:[UIColor whiteColor];
+    CGContextSetFillColorWithColor(context, backgroundColor.CGColor);
     CGContextFillRect(context, rect);
     
     //画边框
@@ -225,7 +225,7 @@
 - (NSDictionary *)defaultAttributedDic
 {
     if (!_defaultAttributedDic) {
-        _defaultAttributedDic = @{NSFontAttributeName:[UIFont systemFontOfSize:10],NSBackgroundColorAttributeName:self.gridBackgroundColor};
+        _defaultAttributedDic = @{NSFontAttributeName:[UIFont systemFontOfSize:10],NSBackgroundColorAttributeName:self.gridBackgroundColor?:[UIColor whiteColor]};
     }
     return _defaultAttributedDic;
 }

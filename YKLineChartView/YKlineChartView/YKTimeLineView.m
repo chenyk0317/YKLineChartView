@@ -42,6 +42,7 @@
 - (void)setupData:(YKTimeDataset *)dataSet
 {
     self.dataset = dataSet;
+    [self notifyDataSetChanged];
 }
 - (void)commonInit {
     
@@ -86,8 +87,6 @@
     
 
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    
     
     [self drawGridBackground:context rect:rect];
     [self drawLabelPrice:context];

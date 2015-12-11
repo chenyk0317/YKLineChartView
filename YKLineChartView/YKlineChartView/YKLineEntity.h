@@ -20,6 +20,8 @@
 @property (nonatomic,assign)CGFloat ma5;
 @property (nonatomic,assign)CGFloat ma10;
 @property (nonatomic,assign)CGFloat ma20;
+@property (nonatomic,assign)CGFloat preClosePx;
+@property (nonatomic,strong)NSString * rate;
 
 @end
 

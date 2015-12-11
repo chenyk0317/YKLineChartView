@@ -31,7 +31,7 @@
 
 
 
-@property (nonatomic,assign)BOOL isFirstDraw;
+//@property (nonatomic,assign)BOOL isFirstDraw;
 @end
 @implementation YKLineChartView
 
@@ -80,13 +80,14 @@
 -(void)setupData:(YKLineDataSet *)dataSet
 {
     self.dataSet = dataSet;
+    [self notifyDataSetChanged];
+    
 }
 - (void)setCurrentDataMaxAndMin
 {
-    if (!self.isFirstDraw) {
-        self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
-        self.isFirstDraw = YES;
-    }
+//    if (!self.isFirstDraw) {
+//        self.isFirstDraw = YES;
+//    }
     
     if (self.dataSet.data.count > 0) {
         self.maxPrice = CGFLOAT_MIN;
@@ -310,7 +311,7 @@
             }
             self.startDrawIndex += (-offset)/self.candleWidth;
         }
-        [self notifyDataSetChanged];
+        [self setNeedsDisplay];
     }
     self.lastPanPoint = point;
 }
@@ -337,7 +338,7 @@
     if(self.candleWidth < self.candleMinWidth){
         self.candleWidth = self.candleMinWidth;
     }
-    [self notifyDataSetChanged];
+    [self setNeedsDisplay];
     self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
     self.lastPinScale = recognizer.scale;
 }
@@ -402,6 +403,7 @@
 {
     [super notifyDataSetChanged];
     [self setNeedsDisplay];
+    self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
 }
 - (void)notifyDeviceOrientationChanged
 {
