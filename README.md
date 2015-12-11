@@ -1,7 +1,7 @@
 YKLineChartView 
 ==============
 
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)]https://github.com/chenyk0317/YKLineChartView/blob/master/LICENSE)&nbsp;
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/chenyk0317/YKLineChartView/blob/master/LICENSE)&nbsp;
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/v/YKLineChartView.svg?style=flat)](http://cocoapods.org/?q= YKLineChartView)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/YKLineChartView.svg?style=flat)](http://cocoapods.org/?q= YKLineChartView)&nbsp;
