@@ -8,7 +8,7 @@ YKLineChartView
 [![Support](https://img.shields.io/badge/support-Autolayout-orange.svg?style=flatt)](https://www.apple.com/)&nbsp;
 
 
-stock chart  framework for iOS.<br/>
+Stock chart  framework for iOS.<br/>
 
 
 
