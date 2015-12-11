@@ -18,4 +18,5 @@
 
 - (void)setupData:(YKLineDataSet *)dataSet;
 
+- (void)addDataSetWithArray:(NSArray *)array;
 @end

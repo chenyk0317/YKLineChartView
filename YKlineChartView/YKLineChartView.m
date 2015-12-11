@@ -27,11 +27,6 @@
 
 @property (nonatomic,assign)CGFloat lastPinScale;
 
-@property (nonatomic,assign)CGPoint lastPanPoint;
-
-
-
-//@property (nonatomic,assign)BOOL isFirstDraw;
 @end
 @implementation YKLineChartView
 
@@ -82,6 +77,12 @@
     self.dataSet = dataSet;
     [self notifyDataSetChanged];
     
+}
+- (void)addDataSetWithArray:(NSArray *)array
+{
+    [self.dataSet.data addObjectsFromArray:array];
+    self.startDrawIndex += array.count;
+    [self setNeedsDisplay];
 }
 - (void)setCurrentDataMaxAndMin
 {
@@ -295,25 +296,37 @@
 {
     
     self.highlightLineCurrentEnabled = NO;
+    
+    BOOL isPanRight = NO;
     CGPoint point = [recognizer translationInView:self];
     
-    CGFloat offset = point.x - self.lastPanPoint.x;
-    NSLog(@"平移,%lf",offset);
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        
     }
     if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if (point.x > 0) {
-            self.startDrawIndex -= offset/self.candleWidth;
-        }else{
-            if (self.startDrawIndex + self.countOfshowCandle + (-offset)/self.candleWidth > self.dataSet.data.count) {
-                return;
-            }
-            self.startDrawIndex += (-offset)/self.candleWidth;
-        }
-        [self setNeedsDisplay];
     }
-    self.lastPanPoint = point;
+   
+    CGFloat offset = point.x;
+    if (point.x > 0) {
+        self.startDrawIndex  -= offset/self.candleMaxWidth;
+        if ( self.startDrawIndex < 10) {
+            if ([self.delegate respondsToSelector:@selector(chartKlineScrollLeft:)]) {
+                [self.delegate chartKlineScrollLeft:self];
+            }
+        }
+    }else{
+        if (self.startDrawIndex + self.countOfshowCandle - (+offset)/self.candleWidth > self.dataSet.data.count) {
+            isPanRight = YES;
+        }
+        self.startDrawIndex += (-offset)/self.candleWidth;
+    }
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (isPanRight) {
+            [self notifyDataSetChanged];
+        }
+    }
+    [self setNeedsDisplay];
+    [recognizer setTranslation:CGPointMake(0, 0) inView:self];
+
 }
 
 - (UIPinchGestureRecognizer *)pinGesture

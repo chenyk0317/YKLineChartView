@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 @interface ViewController ()<YKLineChartViewDelegate>
 
+@property (nonatomic,assign)BOOL isScrollLeft;
+@property (nonatomic,strong)NSMutableArray * addArray;
 @end
 
 @implementation ViewController
@@ -43,6 +45,9 @@
         [array addObject:entity];
         //YTimeLineEntity * entity = [[YTimeLineEntity alloc]init];
     }
+    self.addArray = [array mutableCopy];
+
+    [array addObjectsFromArray:array];
     YKLineDataSet * dataset = [[YKLineDataSet alloc]init];
     dataset.data = array;
     dataset.highlightLineColor = [UIColor colorWithRed:60/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
@@ -120,6 +125,17 @@
 {
 }
 
+- (void)chartKlineScrollLeft:(YKViewBase *)chartView
+{
+    if (!self.isScrollLeft) {
+        NSLog(@"滑动到最左边了");
+        self.isScrollLeft = YES;
+        [self.klineView addDataSetWithArray:self.addArray];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isScrollLeft = NO;
+        });
+    }
+}
 
 
 

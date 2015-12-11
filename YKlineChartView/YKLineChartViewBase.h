@@ -16,6 +16,8 @@
 - (void)chartValueSelected:(YKViewBase *)chartView entry:(id)entry entryIndex:(NSInteger)entryIndex;
 - (void)chartValueNothingSelected:(YKViewBase *)chartView;
 
+- (void)chartKlineScrollLeft:(YKViewBase *)chartView;
+
 
 @end
 
