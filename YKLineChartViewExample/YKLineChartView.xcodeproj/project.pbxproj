@@ -16,12 +16,12 @@
 		E1CF05171C16C536002974B2 /* YKLineChartViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05161C16C536002974B2 /* YKLineChartViewTests.m */; };
 		E1CF05221C16C536002974B2 /* YKLineChartViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CF05211C16C536002974B2 /* YKLineChartViewUITests.m */; };
 		E1E0A8721C1A5D6600F21A0F /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A8711C1A5D6600F21A0F /* data.plist */; };
-		E1E0A8A91C1AD5D400F21A0F /* YKLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A89E1C1AD5D400F21A0F /* YKLineChartView.m */; };
-		E1E0A8AA1C1AD5D400F21A0F /* YKLineChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8A01C1AD5D400F21A0F /* YKLineChartViewBase.m */; };
-		E1E0A8AB1C1AD5D400F21A0F /* YKLineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8A21C1AD5D400F21A0F /* YKLineDataSet.m */; };
-		E1E0A8AC1C1AD5D400F21A0F /* YKLineEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8A41C1AD5D400F21A0F /* YKLineEntity.m */; };
-		E1E0A8AD1C1AD5D400F21A0F /* YKTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8A61C1AD5D400F21A0F /* YKTimeLineView.m */; };
-		E1E0A8AE1C1AD5D400F21A0F /* YKViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8A81C1AD5D400F21A0F /* YKViewBase.m */; };
+		E1E0A8BD1C1AD94200F21A0F /* YKLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8B21C1AD94200F21A0F /* YKLineChartView.m */; };
+		E1E0A8BE1C1AD94200F21A0F /* YKLineChartViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8B41C1AD94200F21A0F /* YKLineChartViewBase.m */; };
+		E1E0A8BF1C1AD94200F21A0F /* YKLineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8B61C1AD94200F21A0F /* YKLineDataSet.m */; };
+		E1E0A8C01C1AD94200F21A0F /* YKLineEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8B81C1AD94200F21A0F /* YKLineEntity.m */; };
+		E1E0A8C11C1AD94200F21A0F /* YKTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8BA1C1AD94200F21A0F /* YKTimeLineView.m */; };
+		E1E0A8C21C1AD94200F21A0F /* YKViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A8BC1C1AD94200F21A0F /* YKViewBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,19 +59,19 @@
 		E1CF05211C16C536002974B2 /* YKLineChartViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewUITests.m; sourceTree = "<group>"; };
 		E1CF05231C16C536002974B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0A8711C1A5D6600F21A0F /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
-		E1E0A89C1C1AD5D400F21A0F /* YKLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChart.h; sourceTree = "<group>"; };
-		E1E0A89D1C1AD5D400F21A0F /* YKLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartView.h; sourceTree = "<group>"; };
-		E1E0A89E1C1AD5D400F21A0F /* YKLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartView.m; sourceTree = "<group>"; };
-		E1E0A89F1C1AD5D400F21A0F /* YKLineChartViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartViewBase.h; sourceTree = "<group>"; };
-		E1E0A8A01C1AD5D400F21A0F /* YKLineChartViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewBase.m; sourceTree = "<group>"; };
-		E1E0A8A11C1AD5D400F21A0F /* YKLineDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineDataSet.h; sourceTree = "<group>"; };
-		E1E0A8A21C1AD5D400F21A0F /* YKLineDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineDataSet.m; sourceTree = "<group>"; };
-		E1E0A8A31C1AD5D400F21A0F /* YKLineEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineEntity.h; sourceTree = "<group>"; };
-		E1E0A8A41C1AD5D400F21A0F /* YKLineEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineEntity.m; sourceTree = "<group>"; };
-		E1E0A8A51C1AD5D400F21A0F /* YKTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKTimeLineView.h; sourceTree = "<group>"; };
-		E1E0A8A61C1AD5D400F21A0F /* YKTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKTimeLineView.m; sourceTree = "<group>"; };
-		E1E0A8A71C1AD5D400F21A0F /* YKViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKViewBase.h; sourceTree = "<group>"; };
-		E1E0A8A81C1AD5D400F21A0F /* YKViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKViewBase.m; sourceTree = "<group>"; };
+		E1E0A8B01C1AD94200F21A0F /* YKLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChart.h; sourceTree = "<group>"; };
+		E1E0A8B11C1AD94200F21A0F /* YKLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartView.h; sourceTree = "<group>"; };
+		E1E0A8B21C1AD94200F21A0F /* YKLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartView.m; sourceTree = "<group>"; };
+		E1E0A8B31C1AD94200F21A0F /* YKLineChartViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineChartViewBase.h; sourceTree = "<group>"; };
+		E1E0A8B41C1AD94200F21A0F /* YKLineChartViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineChartViewBase.m; sourceTree = "<group>"; };
+		E1E0A8B51C1AD94200F21A0F /* YKLineDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineDataSet.h; sourceTree = "<group>"; };
+		E1E0A8B61C1AD94200F21A0F /* YKLineDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineDataSet.m; sourceTree = "<group>"; };
+		E1E0A8B71C1AD94200F21A0F /* YKLineEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKLineEntity.h; sourceTree = "<group>"; };
+		E1E0A8B81C1AD94200F21A0F /* YKLineEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKLineEntity.m; sourceTree = "<group>"; };
+		E1E0A8B91C1AD94200F21A0F /* YKTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKTimeLineView.h; sourceTree = "<group>"; };
+		E1E0A8BA1C1AD94200F21A0F /* YKTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKTimeLineView.m; sourceTree = "<group>"; };
+		E1E0A8BB1C1AD94200F21A0F /* YKViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKViewBase.h; sourceTree = "<group>"; };
+		E1E0A8BC1C1AD94200F21A0F /* YKViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKViewBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,7 @@
 		E1CF04FB1C16C535002974B2 /* YKLineChartView */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0A89B1C1AD5D400F21A0F /* YKlineChartView */,
+				E1E0A8AF1C1AD94200F21A0F /* YKLineChartView */,
 				E1E0A8711C1A5D6600F21A0F /* data.plist */,
 				E1CF04FF1C16C535002974B2 /* AppDelegate.h */,
 				E1CF05001C16C535002974B2 /* AppDelegate.m */,
@@ -163,25 +163,25 @@
 			path = YKLineChartViewUITests;
 			sourceTree = "<group>";
 		};
-		E1E0A89B1C1AD5D400F21A0F /* YKlineChartView */ = {
+		E1E0A8AF1C1AD94200F21A0F /* YKLineChartView */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0A89C1C1AD5D400F21A0F /* YKLineChart.h */,
-				E1E0A89D1C1AD5D400F21A0F /* YKLineChartView.h */,
-				E1E0A89E1C1AD5D400F21A0F /* YKLineChartView.m */,
-				E1E0A89F1C1AD5D400F21A0F /* YKLineChartViewBase.h */,
-				E1E0A8A01C1AD5D400F21A0F /* YKLineChartViewBase.m */,
-				E1E0A8A11C1AD5D400F21A0F /* YKLineDataSet.h */,
-				E1E0A8A21C1AD5D400F21A0F /* YKLineDataSet.m */,
-				E1E0A8A31C1AD5D400F21A0F /* YKLineEntity.h */,
-				E1E0A8A41C1AD5D400F21A0F /* YKLineEntity.m */,
-				E1E0A8A51C1AD5D400F21A0F /* YKTimeLineView.h */,
-				E1E0A8A61C1AD5D400F21A0F /* YKTimeLineView.m */,
-				E1E0A8A71C1AD5D400F21A0F /* YKViewBase.h */,
-				E1E0A8A81C1AD5D400F21A0F /* YKViewBase.m */,
+				E1E0A8B01C1AD94200F21A0F /* YKLineChart.h */,
+				E1E0A8B11C1AD94200F21A0F /* YKLineChartView.h */,
+				E1E0A8B21C1AD94200F21A0F /* YKLineChartView.m */,
+				E1E0A8B31C1AD94200F21A0F /* YKLineChartViewBase.h */,
+				E1E0A8B41C1AD94200F21A0F /* YKLineChartViewBase.m */,
+				E1E0A8B51C1AD94200F21A0F /* YKLineDataSet.h */,
+				E1E0A8B61C1AD94200F21A0F /* YKLineDataSet.m */,
+				E1E0A8B71C1AD94200F21A0F /* YKLineEntity.h */,
+				E1E0A8B81C1AD94200F21A0F /* YKLineEntity.m */,
+				E1E0A8B91C1AD94200F21A0F /* YKTimeLineView.h */,
+				E1E0A8BA1C1AD94200F21A0F /* YKTimeLineView.m */,
+				E1E0A8BB1C1AD94200F21A0F /* YKViewBase.h */,
+				E1E0A8BC1C1AD94200F21A0F /* YKViewBase.m */,
 			);
-			name = YKlineChartView;
-			path = ../../YKlineChartView;
+			name = YKLineChartView;
+			path = ../../YKLineChartView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,14 +315,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E0A8AA1C1AD5D400F21A0F /* YKLineChartViewBase.m in Sources */,
-				E1E0A8AD1C1AD5D400F21A0F /* YKTimeLineView.m in Sources */,
+				E1E0A8BE1C1AD94200F21A0F /* YKLineChartViewBase.m in Sources */,
+				E1E0A8C11C1AD94200F21A0F /* YKTimeLineView.m in Sources */,
 				E1CF05041C16C535002974B2 /* ViewController.m in Sources */,
-				E1E0A8AC1C1AD5D400F21A0F /* YKLineEntity.m in Sources */,
-				E1E0A8A91C1AD5D400F21A0F /* YKLineChartView.m in Sources */,
-				E1E0A8AE1C1AD5D400F21A0F /* YKViewBase.m in Sources */,
+				E1E0A8C01C1AD94200F21A0F /* YKLineEntity.m in Sources */,
+				E1E0A8BD1C1AD94200F21A0F /* YKLineChartView.m in Sources */,
+				E1E0A8C21C1AD94200F21A0F /* YKViewBase.m in Sources */,
 				E1CF05011C16C535002974B2 /* AppDelegate.m in Sources */,
-				E1E0A8AB1C1AD5D400F21A0F /* YKLineDataSet.m in Sources */,
+				E1E0A8BF1C1AD94200F21A0F /* YKLineDataSet.m in Sources */,
 				E1CF04FE1C16C535002974B2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
