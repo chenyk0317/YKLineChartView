@@ -46,7 +46,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="TestView" destination="ux4-AN-j0d" id="ZJK-L2-W2t"/>
+                        <outlet property="klineView" destination="ux4-AN-j0d" id="Y4U-qK-1ob"/>
                         <outlet property="timeView" destination="4GR-vS-4h0" id="GNi-G3-Rfa"/>
                     </connections>
                 </viewController>

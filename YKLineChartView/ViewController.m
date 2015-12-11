@@ -21,7 +21,6 @@
     
     // Do any additional setup after loading the view, typically from a nib.
  
-    NSLog(@"0 === %d",[self.TestView isInBoundsX:400]);
     
     NSString * path =[[NSBundle mainBundle]pathForResource:@"data.plist" ofType:nil];
     NSArray * sourceArray = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data"];
@@ -56,17 +55,17 @@
     dataset.avgMA20Color = [UIColor colorWithRed:216/255.0 green:192/255.0 blue:44/255.0 alpha:1.0];
     dataset.candleTopBottmLineWidth = 1;
     
-    [self.TestView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
-    self.TestView.gridBackgroundColor = [UIColor whiteColor];
-    self.TestView.borderColor = [UIColor colorWithRed:203/255.0 green:215/255.0 blue:224/255.0 alpha:1.0];
-    self.TestView.borderWidth = .5;
-    self.TestView.candleWidth = 8;
-    self.TestView.candleMaxWidth = 30;
-    self.TestView.candleMinWidth = 1;
-    self.TestView.uperChartHeightScale = 0.7;
-    self.TestView.xAxisHeitht = 25;
-    self.TestView.delegate = self;
-    [self.TestView setupData:dataset];
+    [self.klineView setupChartOffsetWithLeft:50 top:10 right:10 bottom:10];
+    self.klineView.gridBackgroundColor = [UIColor whiteColor];
+    self.klineView.borderColor = [UIColor colorWithRed:203/255.0 green:215/255.0 blue:224/255.0 alpha:1.0];
+    self.klineView.borderWidth = .5;
+    self.klineView.candleWidth = 8;
+    self.klineView.candleMaxWidth = 30;
+    self.klineView.candleMinWidth = 1;
+    self.klineView.uperChartHeightScale = 0.7;
+    self.klineView.xAxisHeitht = 25;
+    self.klineView.delegate = self;
+    [self.klineView setupData:dataset];
     
     
     NSArray * sourceArray2 = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data3"];
