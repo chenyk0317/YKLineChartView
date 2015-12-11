@@ -14,6 +14,7 @@
 @property (nonatomic,strong)YKTimeDataset * dataset;
 @property (nonatomic,strong)UILongPressGestureRecognizer * longPressGesture;
 @property (nonatomic,strong)UITapGestureRecognizer * tapGesture;
+@property (nonatomic,strong)CALayer * breathingPoint;
 
 @end
 @implementation YKTimeLineView
@@ -215,6 +216,10 @@
             }
         }
         
+        if (i == self.dataset.data.count - 1 && i != self.countOfTimes-1) {
+            self.breathingPoint.frame = CGRectMake(startX-4/2, yPrice-4/2,4,4);
+        }
+        
         
     }
     
@@ -322,5 +327,34 @@
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
     
+}
+
+
+- (CALayer *)breathingPoint
+{
+    if (!_breathingPoint) {
+        _breathingPoint = [CAScrollLayer layer];
+        [self.layer addSublayer:_breathingPoint];
+        _breathingPoint.backgroundColor = [UIColor whiteColor].CGColor;
+        _breathingPoint.cornerRadius = 2;
+        _breathingPoint.masksToBounds = YES;
+        _breathingPoint.borderWidth = 1;
+        _breathingPoint.borderColor = self.dataset.priceLineCorlor.CGColor;
+        [_breathingPoint addAnimation:[self breathingLight:.8f] forKey:@"breathingPoint"];
+    }
+    return _breathingPoint;
+}
+-(CABasicAnimation *)breathingLight:(float)time
+{
+    CABasicAnimation *animation =[CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+    animation.toValue = [NSNumber numberWithFloat:0.3f];//这是透明度。
+    animation.autoreverses = YES;
+    animation.duration = time;
+    animation.repeatCount = MAXFLOAT;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    return animation;
 }
 @end

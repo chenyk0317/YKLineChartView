@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet YKLineChartView *TestView;
 @property (weak, nonatomic) IBOutlet YKTimeLineView *timeView;
+@property (weak, nonatomic) IBOutlet UIButton *testbutton;
 
 @end
 

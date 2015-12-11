@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "YKLineEntity.h"
 #import "YKLineDataSet.h"
+#import <QuartzCore/QuartzCore.h>
 @interface ViewController ()<YKLineChartViewDelegate>
 
 @end
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view, typically from a nib.
  
     NSLog(@"0 === %d",[self.TestView isInBoundsX:400]);
@@ -67,7 +69,7 @@
     [self.TestView setupData:dataset];
     
     
-    NSArray * sourceArray2 = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data4"];
+    NSArray * sourceArray2 = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:@"data3"];
     NSMutableArray * timeArray = [NSMutableArray array];
     for (NSDictionary * dic in sourceArray2) {
         YKTimeLineEntity * e = [[YKTimeLineEntity alloc]init];
@@ -107,49 +109,20 @@
     self.timeView.delegate = self;
     [self.timeView setupData:set];
     
-
+    
 }
 
 -(void)chartValueSelected:(YKViewBase *)chartView entry:(id)entry entryIndex:(NSInteger)entryIndex
 {
-    NSLog(@"%@",entry);
-    NSLog(@"%ld",entryIndex);
+   
 }
 
 - (void)chartValueNothingSelected:(YKViewBase *)chartView
 {
-    NSLog(@"十字线消失");
-}
-/*
-- (UIPanGestureRecognizer *)panGesture
-{
-    if (!_panGesture) {
-        _panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPanGestureAction:)];
-        _panGesture.delegate = self;
-    }
-    return _panGesture;
 }
 
-- (UIPinchGestureRecognizer*)pinGesture
-{
-    if (!_pinGesture) {
-        _pinGesture = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(didPinchGestureAction:)];
-        _panGesture.delegate = self;
-    }
-    return _pinGesture;
-}
 
-- (void)didPanGestureAction:(UIPanGestureRecognizer*)recognizer
-{
-    
-    NSLog(@"平移");
-    
-}
-- (void)didPinchGestureAction:(UIPinchGestureRecognizer*)recognizer
-{
-    NSLog(@"缩放");
-    
-}*/
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
