@@ -294,6 +294,9 @@
 }
 - (void)handlePanGestureAction:(UIPanGestureRecognizer *)recognizer
 {
+    if (!self.scrollEnabled) {
+        return;
+    }
     
     self.highlightLineCurrentEnabled = NO;
     
@@ -338,6 +341,10 @@
 }
 - (void)handlePinGestureAction:(UIPinchGestureRecognizer *)recognizer
 {
+    if (!self.zoomEnabled) {
+        return;
+    }
+    
     self.highlightLineCurrentEnabled = NO;
 
     recognizer.scale= recognizer.scale-self.lastPinScale + 1;
@@ -351,9 +358,12 @@
     if(self.candleWidth < self.candleMinWidth){
         self.candleWidth = self.candleMinWidth;
     }
-    [self setNeedsDisplay];
+    
     self.startDrawIndex = self.dataSet.data.count - self.countOfshowCandle;
+    [self setNeedsDisplay];
+    
     self.lastPinScale = recognizer.scale;
+
 }
 
 - (UILongPressGestureRecognizer *)longPressGesture
@@ -366,7 +376,9 @@
 }
 - (void)handleLongPressGestureAction:(UIPanGestureRecognizer *)recognizer
 {
-    
+    if (!self.highlightLineShowEnabled) {
+        return;
+    }
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint  point = [recognizer locationInView:self];
         

@@ -243,7 +243,9 @@
 }
 - (void)handleLongPressGestureAction:(UIPanGestureRecognizer *)recognizer
 {
-    
+    if (!self.highlightLineShowEnabled) {
+        return;
+    }
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint  point = [recognizer locationInView:self];
         

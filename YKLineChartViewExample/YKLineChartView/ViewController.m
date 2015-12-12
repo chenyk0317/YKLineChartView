@@ -70,6 +70,9 @@
     self.klineView.uperChartHeightScale = 0.7;
     self.klineView.xAxisHeitht = 25;
     self.klineView.delegate = self;
+    self.klineView.highlightLineShowEnabled = YES;
+    self.klineView.zoomEnabled = YES;
+    self.klineView.scrollEnabled = YES;
     [self.klineView setupData:dataset];
     
     
@@ -111,6 +114,7 @@
     set.fillAlpha = .5f;
     set.drawFilledEnabled = YES;
     self.timeView.delegate = self;
+    self.timeView.highlightLineShowEnabled = YES;
     [self.timeView setupData:set];
     
     

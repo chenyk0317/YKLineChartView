@@ -46,6 +46,10 @@
 @property (nonatomic,strong)NSDictionary * xAxisAttributedDic;
 @property (nonatomic,strong)NSDictionary * highlightAttributedDic;
 @property (nonatomic,strong)NSDictionary * defaultAttributedDic;
+@property (nonatomic,assign)BOOL highlightLineShowEnabled;
+@property (nonatomic,assign)BOOL scrollEnabled;
+@property (nonatomic,assign)BOOL zoomEnabled;
+
 
 
 @property (nonatomic,assign)id<YKLineChartViewDelegate>  delegate;
