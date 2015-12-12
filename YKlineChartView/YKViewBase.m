@@ -19,7 +19,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self commonInit];
+        [self addObserver];
+//        [self commonInit];
     }
     return self;
 }
@@ -27,21 +28,25 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
-        
+        [self addObserver];
+//        [self commonInit];
+
     }
     return self;
 }
-
-- (void)commonInit {
-    
-    [self setChartDimens:self.bounds.size.width height:self.bounds.size.height];
-    [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+- (void)addObserver
+{
+    [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     
     [[UIDevice currentDevice]beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
+//- (void)commonInit {
+//    
+//    //[self setChartDimens:self.bounds.size.width height:self.bounds.size.height];
+//    
+//}
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"bounds"];

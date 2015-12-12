@@ -50,7 +50,6 @@
 
 - (void)commonInit {
     
-    [super commonInit];
     self.candleCoordsScale = 0.f;
     
     [self addGestureRecognizer:self.panGesture];

@@ -14,7 +14,6 @@
 @property (nonatomic,assign) CGFloat chartWidth;
 
 
-- (void)commonInit;
 
 
 - (void)setupChartOffsetWithLeft:(CGFloat)left

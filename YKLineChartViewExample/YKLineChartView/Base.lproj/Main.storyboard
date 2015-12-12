@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pf2-HE-hYu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,39 +17,135 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ux4-AN-j0d" customClass="YKLineChartView">
-                                <rect key="frame" x="20" y="20" width="560" height="160"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="rbz-zp-epj"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4GR-vS-4h0" customClass="YKTimeLineView">
-                                <rect key="frame" x="20" y="195" width="560" height="180"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="K3G-cM-TIc"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulg-nB-Tea">
+                                <rect key="frame" x="264" y="106" width="72" height="30"/>
+                                <state key="normal" title="KlineChart"/>
+                                <connections>
+                                    <segue destination="zFi-bD-0Wq" kind="push" id="Cv7-rC-FLx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hb0-pM-gvq">
+                                <rect key="frame" x="249.5" y="176" width="101" height="30"/>
+                                <state key="normal" title="TimeLineChart"/>
+                                <connections>
+                                    <segue destination="vBc-n1-S1T" kind="push" id="6Xv-Mz-hhC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="ux4-AN-j0d" secondAttribute="trailing" id="1wO-8h-TgR"/>
-                            <constraint firstItem="ux4-AN-j0d" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5RW-8Q-D4j"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4GR-vS-4h0" secondAttribute="trailing" id="HCT-YO-Aek"/>
-                            <constraint firstItem="ux4-AN-j0d" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Von-bL-VSE"/>
-                            <constraint firstItem="4GR-vS-4h0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="j4q-a0-HUy"/>
-                            <constraint firstItem="4GR-vS-4h0" firstAttribute="top" secondItem="ux4-AN-j0d" secondAttribute="bottom" constant="15" id="mrW-ZY-WGv"/>
+                            <constraint firstItem="ulg-nB-Tea" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="42" id="115-vq-XFh"/>
+                            <constraint firstItem="hb0-pM-gvq" firstAttribute="top" secondItem="ulg-nB-Tea" secondAttribute="bottom" constant="40" id="4AA-fp-nVj"/>
+                            <constraint firstItem="hb0-pM-gvq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EQw-zM-AKQ"/>
+                            <constraint firstItem="ulg-nB-Tea" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m0j-Gq-tPx"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="klineView" destination="ux4-AN-j0d" id="Y4U-qK-1ob"/>
-                        <outlet property="timeView" destination="4GR-vS-4h0" id="GNi-G3-Rfa"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="F0Z-Um-Shp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1122" y="233"/>
+        </scene>
+        <!--Line Chart View Controller-->
+        <scene sceneID="5VB-z6-JfF">
+            <objects>
+                <viewController id="zFi-bD-0Wq" customClass="KLineChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n4T-6O-s3e"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZwV-4x-E7j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PU9-10-GXZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZ8-ip-Cw7" customClass="YKLineChartView">
+                                <rect key="frame" x="10" y="84" width="580" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="B8d-mY-27H"/>
+                                </constraints>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="30" y="84" width="340" height="200"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="40" y="74" width="720" height="516"/>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YZ8-ip-Cw7" firstAttribute="top" secondItem="n4T-6O-s3e" secondAttribute="bottom" constant="20" id="H3a-sJ-q7v"/>
+                            <constraint firstItem="YZ8-ip-Cw7" firstAttribute="leading" secondItem="PU9-10-GXZ" secondAttribute="leading" constant="10" id="eZL-hi-kL2"/>
+                            <constraint firstAttribute="trailing" secondItem="YZ8-ip-Cw7" secondAttribute="trailing" constant="10" id="tXj-11-qSi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PTA-uD-7VE"/>
+                    <connections>
+                        <outlet property="klineView" destination="YZ8-ip-Cw7" id="ve4-uz-d3B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5w9-RY-G2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="111"/>
+        </scene>
+        <!--Time Line Chart View Controller-->
+        <scene sceneID="clQ-4J-fYa">
+            <objects>
+                <viewController id="vBc-n1-S1T" customClass="TimeLineChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fnw-p4-EZJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sxw-Dh-wjg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8RR-6K-ect">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-DL-Vq8" customClass="YKTimeLineView">
+                                <rect key="frame" x="10" y="84" width="580" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="eUP-Le-MdO"/>
+                                </constraints>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="30" y="84" width="340" height="200"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="74" width="760" height="516"/>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="a8J-DL-Vq8" secondAttribute="trailing" constant="10" id="6Bk-OR-YFJ"/>
+                            <constraint firstItem="a8J-DL-Vq8" firstAttribute="top" secondItem="fnw-p4-EZJ" secondAttribute="bottom" constant="20" id="Ytv-Gs-Fyj"/>
+                            <constraint firstItem="a8J-DL-Vq8" firstAttribute="leading" secondItem="8RR-6K-ect" secondAttribute="leading" constant="10" id="z8i-9P-g2Y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="k9t-O4-0Oa"/>
+                    <connections>
+                        <outlet property="timeLineView" destination="a8J-DL-Vq8" id="GOO-lI-lkm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g7v-GF-ts8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1733" y="837"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0mA-mE-24S">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pf2-HE-hYu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a83-bV-eee">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Jfg-mJ-X8i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVR-kY-LRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="310" y="233"/>
         </scene>

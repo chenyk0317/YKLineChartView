@@ -47,9 +47,7 @@
 }
 - (void)commonInit {
     
-    [super commonInit];
     self.candleCoordsScale = 0.f;
-    
     [self addGestureRecognizer:self.longPressGesture];
     [self addGestureRecognizer:self.tapGesture];
 }

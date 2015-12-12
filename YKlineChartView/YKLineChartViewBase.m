@@ -16,7 +16,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self commonInit];
+//        [self commonInit];
     }
     return self;
 }
@@ -24,17 +24,16 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
+//        [self commonInit];
         
     }
     return self;
 }
 
-- (void)commonInit {
-    
-    [super commonInit];
- 
-}
+//- (void)commonInit {
+//    
+// 
+//}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -242,6 +241,7 @@
         }
     }
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
