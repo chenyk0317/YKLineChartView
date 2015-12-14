@@ -214,10 +214,11 @@
             }
         }
         
-        if (i == self.dataset.data.count - 1 && i != self.countOfTimes-1) {
-            self.breathingPoint.frame = CGRectMake(startX-4/2, yPrice-4/2,4,4);
+        if (self.endPointShowEnabled) {
+            if (i == self.dataset.data.count - 1 && i != self.countOfTimes-1) {
+                self.breathingPoint.frame = CGRectMake(startX-4/2, yPrice-4/2,4,4);
+            }
         }
-        
         
     }
     
