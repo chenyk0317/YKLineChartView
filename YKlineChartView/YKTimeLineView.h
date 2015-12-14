@@ -15,5 +15,7 @@
 @property (nonatomic,assign)CGFloat offsetMaxPrice;
 @property (nonatomic,assign)NSInteger countOfTimes;
 
+@property (nonatomic,assign)BOOL endPointShowEnabled;
+
 - (void)setupData:(YKTimeDataset *)dataSet;
 @end
