@@ -10,6 +10,8 @@ YKLineChartView
 
 Stock chart  framework for iOS.<br/>
 
+![image](/YKLineChartViewExample/YKLineChartView.gif)
+
 
 
 Installation
