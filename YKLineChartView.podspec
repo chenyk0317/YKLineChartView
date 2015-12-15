@@ -2,7 +2,7 @@
  Pod::Spec.new do |s|
   s.name         = 'YKLineChartView'
   s.summary      = 'chart framework for iOS.'
-  s.version      = '0.1'
+  s.version      = '0.2'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'chenyk0317' => 'chenyk0317@163.com' }
   s.social_media_url = 'http://chenyk.com'
