@@ -79,7 +79,10 @@
 }
 - (void)addDataSetWithArray:(NSArray *)array
 {
+    NSArray * tempArray = [self.dataSet.data copy];
+    [self.dataSet.data removeAllObjects];
     [self.dataSet.data addObjectsFromArray:array];
+    [self.dataSet.data addObjectsFromArray:tempArray];    
     self.startDrawIndex += array.count;
     [self setNeedsDisplay];
 }
@@ -153,7 +156,7 @@
     }
     
     
-    NSDictionary * drawAttributes = self.highlightAttributedDic ?:self.defaultAttributedDic;
+    NSDictionary * drawAttributes = self.avgLabelAttributedDic ?:self.defaultAttributedDic;
     
     CGFloat radius = 8.0;
     CGFloat space = 4.0;
@@ -211,6 +214,22 @@
         CGFloat candleWidth = self.candleWidth - self.candleWidth / 6.0;
         CGFloat startX = left + candleWidth/2.0 ;
         
+        
+        
+        //date
+        //日期
+        if (i % (NSInteger)(220/self.candleWidth) == 0) {
+            [self drawline:context startPoint:CGPointMake(startX, self.contentTop) stopPoint:CGPointMake(startX,  (self.uperChartHeightScale * self.contentHeight)+ self.contentTop) color:self.borderColor lineWidth:0.5];
+            [self drawline:context startPoint:CGPointMake(startX, (self.uperChartHeightScale * self.contentHeight)+ self.xAxisHeitht) stopPoint:CGPointMake(startX,self.contentBottom) color:self.borderColor lineWidth:0.5];
+            NSString * date = entity.date;
+            NSDictionary * drawAttributes = self.xAxisAttributedDic?:self.defaultAttributedDic;
+            NSMutableAttributedString * dateStrAtt = [[NSMutableAttributedString alloc]initWithString:date attributes:drawAttributes];
+            CGSize dateStrAttSize = [dateStrAtt size];
+            [self drawLabel:context attributesText:dateStrAtt rect:CGRectMake(startX - dateStrAttSize.width/2,((self.uperChartHeightScale * self.contentHeight)+ self.contentTop), dateStrAttSize.width, dateStrAttSize.height)];
+            
+        }
+
+        
         UIColor * color = self.dataSet.candleRiseColor;
         if (open < close) {
             color = self.dataSet.candleFallColor;
@@ -256,6 +275,14 @@
         CGFloat volume = ((entity.volume - 0) * self.volumeCoordsScale);
         [self drawRect:context rect:CGRectMake(left, self.contentBottom - volume , candleWidth, volume) color:color];
         
+    }
+    for (NSInteger i = idex ; i< self.dataSet.data.count; i ++) {
+        YKLineEntity  * entity  = [self.dataSet.data objectAtIndex:i];
+        
+        CGFloat close = ((self.maxPrice - entity.close) * self.candleCoordsScale) + self.contentTop;
+        CGFloat left = (self.candleWidth * (i - idex) + self.contentLeft) + self.candleWidth / 6.0;
+        CGFloat candleWidth = self.candleWidth - self.candleWidth / 6.0;
+        CGFloat startX = left + candleWidth/2.0 ;
         //十字线
         if (self.highlightLineCurrentEnabled) {
             if (i == self.highlightLineCurrentIndex) {
@@ -264,8 +291,6 @@
                 if (i < self.dataSet.data.count) {
                     entity = [self.dataSet.data objectAtIndex:i];
                 }
-                
-                
                 [self drawHighlighted:context point:CGPointMake(startX, close)idex:idex value:entity color:self.dataSet.highlightLineColor lineWidth:self.dataSet.highlightLineWidth];
                 [self drawAvgMarker:context idex:i];
                 if ([self.delegate respondsToSelector:@selector(chartValueSelected:entry:entryIndex:) ]) {
@@ -273,9 +298,8 @@
                 }
             }
         }
-        
-        
     }
+    
     
     if (!self.highlightLineCurrentEnabled) {
         [self drawAvgMarker:context idex:0];

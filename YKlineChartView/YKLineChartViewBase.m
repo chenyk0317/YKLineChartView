@@ -67,7 +67,7 @@
     CGSize sizeMaxPriceAttStr = [maxPriceAttStr size];
     [self drawLabel:context attributesText:maxPriceAttStr rect:CGRectMake(self.contentLeft - sizeMaxPriceAttStr.width, self.contentTop, sizeMaxPriceAttStr.width, sizeMaxPriceAttStr.height)];
     
-    NSString * midPriceStr = [self handleStrWithPrice:(self.maxPrice+self.minPrice)/2];
+    NSString * midPriceStr = [self handleStrWithPrice:(self.maxPrice+self.minPrice)/2.0];
     NSMutableAttributedString * midPriceAttStr = [[NSMutableAttributedString alloc]initWithString:midPriceStr attributes:drawAttributes];
     CGSize sizeMidPriceAttStr = [midPriceAttStr size];
     [self drawLabel:context attributesText:midPriceAttStr rect:CGRectMake(self.contentLeft - sizeMidPriceAttStr.width, ((self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop)-sizeMidPriceAttStr.height/2.0, sizeMidPriceAttStr.width, sizeMidPriceAttStr.height)];
@@ -87,6 +87,17 @@
     [self drawLabel:context attributesText:maxVolumeAttStr rect:CGRectMake(self.contentLeft - maxVolumeAttStrSize.width, (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, maxVolumeAttStrSize.width, maxVolumeAttStrSize.height)];
     
     
+    /*
+    NSString * maxRateStr = [self handleRateWithPrice:self.maxPrice originPX:(self.maxPrice+self.minPrice)/2.0];
+    NSMutableAttributedString * maxRateAttStr = [[NSMutableAttributedString alloc]initWithString:maxRateStr attributes:drawAttributes];
+    CGSize sizeMaxRateAttStr = [maxPriceAttStr size];
+    [self drawLabel:context attributesText:maxRateAttStr rect:CGRectMake(self.contentRight, self.contentTop, sizeMaxRateAttStr.width, sizeMaxRateAttStr.height)];
+    
+    NSString * minRateStr = [self handleRateWithPrice:self.minPrice originPX:(self.maxPrice+self.minPrice)/2.0];
+    NSMutableAttributedString * minRateAttStr = [[NSMutableAttributedString alloc]initWithString:minRateStr attributes:drawAttributes];
+    CGSize sizeMinRateAttStr = [minRateAttStr size];
+    [self drawLabel:context attributesText:minRateAttStr rect:CGRectMake(self.contentRight, ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinRateAttStr.height ), sizeMinPriceAttStr.width, sizeMinRateAttStr.height)];*/
+    
 }
 
 
@@ -100,6 +111,7 @@
     
     NSString * leftMarkerStr;
     NSString * bottomMarkerStr;
+    NSString * rightMarkerStr;
     
     
     if ([value isKindOfClass:[YKTimeLineEntity class]]) {
@@ -107,16 +119,19 @@
         leftMarkerStr = [self handleStrWithPrice:entity.lastPirce];
         
         bottomMarkerStr = entity.currtTime;
+        rightMarkerStr = entity.rate;
+
         
     }else if([value isKindOfClass:[YKLineEntity class]]){
         YKLineEntity * entity = value;
         leftMarkerStr = [self handleStrWithPrice:entity.close];
         bottomMarkerStr = entity.date;
+        rightMarkerStr = entity.rate;
     }else{
         return;
     }
     
-    if (nil == leftMarkerStr || nil == bottomMarkerStr) {
+    if (nil == leftMarkerStr || nil == bottomMarkerStr || nil == rightMarkerStr) {
         return;
     }
     bottomMarkerStr = [[@" " stringByAppendingString:bottomMarkerStr] stringByAppendingString:@" "];
@@ -151,6 +166,11 @@
     
     CGSize bottomMarkerStrAttSize = [bottomMarkerStrAtt size];
     [self drawLabel:context attributesText:bottomMarkerStrAtt rect:CGRectMake(point.x - bottomMarkerStrAttSize.width/2.0,  ((self.uperChartHeightScale * self.contentHeight) + self.contentTop), bottomMarkerStrAttSize.width, bottomMarkerStrAttSize.height)];
+    
+    
+    NSMutableAttributedString * rightMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:rightMarkerStr attributes:drawAttributes];
+    CGSize rightMarkerStrAttSize = [rightMarkerStrAtt size];
+    [self drawLabel:context attributesText:rightMarkerStrAtt rect:CGRectMake(self.contentRight, point.y - rightMarkerStrAttSize.height/2.0, rightMarkerStrAttSize.width, rightMarkerStrAttSize.height)];
     
     
     
@@ -193,6 +213,12 @@
 }
 
 
+- (NSString *)handleRateWithPrice:(CGFloat)price
+                         originPX:(CGFloat)originPX
+{
+    
+    return [NSString stringWithFormat:@"%.2f",(price - originPX)/originPX *100.00];
+}
 - (NSString *)handleStrWithPrice:(CGFloat)price
 {
     return [NSString stringWithFormat:@"%.2f ",price];

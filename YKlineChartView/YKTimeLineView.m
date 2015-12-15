@@ -66,16 +66,19 @@
             YKTimeLineEntity  * entity = [self.dataset.data objectAtIndex:i];
             
             self.offsetMaxPrice = self.offsetMaxPrice >fabs(entity.lastPirce-entity.preClosePx)?self.offsetMaxPrice:fabs(entity.lastPirce-entity.preClosePx);
-            
-
-            
             self.maxVolume = self.maxVolume >entity.volume ? self.maxVolume : entity.volume;
         }
-        
         self.maxPrice =((YKTimeLineEntity *)[self.dataset.data firstObject]).preClosePx + self.offsetMaxPrice;
         self.minPrice =((YKTimeLineEntity *)[self.dataset.data firstObject]).preClosePx - self.offsetMaxPrice;
+        
+        for (NSInteger i = 0; i < self.dataset.data.count; i++) {
+            YKTimeLineEntity  * entity = [self.dataset.data objectAtIndex:i];
+            entity.avgPirce = entity.avgPirce < self.minPrice ? self.minPrice :entity.avgPirce;
+            entity.avgPirce = entity.avgPirce > self.maxPrice ? self.maxPrice :entity.avgPirce;
+        }
+      
+        
     }
-    NSLog(@"%lf,%lf",self.minPrice,self.maxPrice);
 }
 
 - (void)drawRect:(CGRect)rect
@@ -102,7 +105,7 @@
 }
 - (void)drawTimeLabel:(CGContextRef)context
 {
-    NSDictionary * drawAttributes = self.highlightAttributedDic ?: self.defaultAttributedDic;
+    NSDictionary * drawAttributes = self.xAxisAttributedDic ?: self.defaultAttributedDic;
     
     NSMutableAttributedString * startTimeAttStr = [[NSMutableAttributedString alloc]initWithString:@"9:30" attributes:drawAttributes];
     CGSize sizeStartTimeAttStr = [startTimeAttStr size];
@@ -121,10 +124,6 @@
 - (void)drawTimeLine:(CGContextRef)context
 {
     CGContextSaveGState(context);
-    
-    NSLog(@"%.2f",self.contentWidth);
-    NSLog(@"%.2f",self.volumeWidth);
-    NSLog(@"%ld",self.countOfTimes);
     
     self.candleCoordsScale = (self.uperChartHeightScale * self.contentHeight)/(self.maxPrice-self.minPrice);
     self.volumeCoordsScale = (self.contentHeight - (self.uperChartHeightScale * self.contentHeight)-self.xAxisHeitht)/(self.maxVolume - 0);
@@ -158,9 +157,12 @@
             
             [self drawline:context startPoint:CGPointMake(lastX, lastYPrice) stopPoint:CGPointMake(startX, yPrice) color:self.dataset.priceLineCorlor lineWidth:self.dataset.lineWidth];
             
+
             CGFloat lastYAvg = (self.maxPrice - lastEntity.avgPirce)*self.candleCoordsScale  + self.contentTop;
             CGFloat  yAvg = (self.maxPrice - entity.avgPirce)*self.candleCoordsScale  + self.contentTop;
+            
             [self drawline:context startPoint:CGPointMake(lastX, lastYAvg) stopPoint:CGPointMake(startX, yAvg) color:self.dataset.avgLineCorlor lineWidth:self.dataset.lineWidth];
+            
             
             if (entity.lastPirce > lastEntity.lastPirce) {
                 color = self.dataset.volumeRiseColor;
@@ -183,12 +185,6 @@
                 CGPathCloseSubpath(fillPath);
             }
         }
-        
-
-        
-        
-    
-        
         
         
         //成交量
@@ -223,7 +219,7 @@
     }
     
     
-    if (self.dataset.drawFilledEnabled) {
+    if (self.dataset.drawFilledEnabled && self.dataset.data.count > 0) {
         [self drawLinearGradient:context path:fillPath alpha:self.dataset.fillAlpha startColor:self.dataset.fillStartColor.CGColor endColor:self.dataset.fillStopColor.CGColor];
     }
     CGPathRelease(fillPath);
