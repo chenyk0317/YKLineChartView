@@ -4,7 +4,7 @@
 //
 //  Created by chenyk on 15/12/9.
 //  Copyright © 2015年 chenyk. All rights reserved.
-//
+//  https://github.com/chenyk0317/YKLineChartView
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -19,6 +19,7 @@
 @property (nonatomic,strong)UIColor * avgMA20Color;
 @property (nonatomic,assign)CGFloat  avgLineWidth;
 @property (nonatomic,assign)CGFloat candleTopBottmLineWidth;
+
 
 @end
 

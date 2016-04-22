@@ -4,7 +4,7 @@
 //
 //  Created by chenyk on 15/12/9.
 //  Copyright © 2015年 chenyk. All rights reserved.
-//
+//  https://github.com/chenyk0317/YKLineChartView
 
 #import "YKLineChartViewBase.h"
 #import "YKLineEntity.h"
@@ -60,43 +60,60 @@
 
 - (void)drawLabelPrice:(CGContextRef)context
 {
+ 
+    UIColor * labelBGColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     NSDictionary * drawAttributes = self.leftYAxisAttributedDic?:self.defaultAttributedDic;
     
     NSString * maxPriceStr = [self handleStrWithPrice:self.maxPrice];
     NSMutableAttributedString * maxPriceAttStr = [[NSMutableAttributedString alloc]initWithString:maxPriceStr attributes:drawAttributes];
     CGSize sizeMaxPriceAttStr = [maxPriceAttStr size];
-    [self drawLabel:context attributesText:maxPriceAttStr rect:CGRectMake(self.contentLeft - sizeMaxPriceAttStr.width, self.contentTop, sizeMaxPriceAttStr.width, sizeMaxPriceAttStr.height)];
+    CGRect maxPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMaxPriceAttStr.width), self.contentTop, sizeMaxPriceAttStr.width, sizeMaxPriceAttStr.height);
+    [self drawRect:context rect:maxPriceRect color:labelBGColor];
+    [self drawLabel:context attributesText:maxPriceAttStr rect:maxPriceRect];
     
     NSString * midPriceStr = [self handleStrWithPrice:(self.maxPrice+self.minPrice)/2.0];
     NSMutableAttributedString * midPriceAttStr = [[NSMutableAttributedString alloc]initWithString:midPriceStr attributes:drawAttributes];
     CGSize sizeMidPriceAttStr = [midPriceAttStr size];
-    [self drawLabel:context attributesText:midPriceAttStr rect:CGRectMake(self.contentLeft - sizeMidPriceAttStr.width, ((self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop)-sizeMidPriceAttStr.height/2.0, sizeMidPriceAttStr.width, sizeMidPriceAttStr.height)];
+    CGRect midPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMidPriceAttStr.width), ((self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop)-sizeMidPriceAttStr.height/2.0, sizeMidPriceAttStr.width, sizeMidPriceAttStr.height);
+    [self drawRect:context rect:midPriceRect color:labelBGColor];
+    [self drawLabel:context attributesText:midPriceAttStr rect:midPriceRect];
     
     NSString * minPriceStr = [self handleStrWithPrice:self.minPrice];
     NSMutableAttributedString * minPriceAttStr = [[NSMutableAttributedString alloc]initWithString:minPriceStr attributes:drawAttributes];
     CGSize sizeMinPriceAttStr = [minPriceAttStr size];
-    [self drawLabel:context attributesText:minPriceAttStr rect:CGRectMake(self.contentLeft - sizeMinPriceAttStr.width, ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinPriceAttStr.height ), sizeMinPriceAttStr.width, sizeMinPriceAttStr.height)];
+    CGRect minPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMinPriceAttStr.width), ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinPriceAttStr.height ), sizeMinPriceAttStr.width, sizeMinPriceAttStr.height);
+    [self drawRect:context rect:minPriceRect color:labelBGColor];
+    [self drawLabel:context attributesText:minPriceAttStr rect:minPriceRect];
     
     NSMutableAttributedString * zeroVolumeAttStr = [[NSMutableAttributedString alloc]initWithString:[self handleShowWithVolume:self.maxVolume] attributes:drawAttributes];
     CGSize zeroVolumeAttStrSize = [zeroVolumeAttStr size];
-    [self drawLabel:context attributesText:zeroVolumeAttStr rect:CGRectMake(self.contentLeft - zeroVolumeAttStrSize.width, self.contentBottom - zeroVolumeAttStrSize.height, zeroVolumeAttStrSize.width, zeroVolumeAttStrSize.height)];
+    CGRect zeroVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:zeroVolumeAttStrSize.width), self.contentBottom - zeroVolumeAttStrSize.height, zeroVolumeAttStrSize.width, zeroVolumeAttStrSize.height);
+    [self drawRect:context rect:zeroVolumeRect color:labelBGColor];
+    [self drawLabel:context attributesText:zeroVolumeAttStr rect:zeroVolumeRect];
     
     NSString * maxVolumeStr = [self handleShowNumWithVolume:self.maxVolume];
     NSMutableAttributedString * maxVolumeAttStr = [[NSMutableAttributedString alloc]initWithString:maxVolumeStr attributes:drawAttributes];
     CGSize maxVolumeAttStrSize = [maxVolumeAttStr size];
-    [self drawLabel:context attributesText:maxVolumeAttStr rect:CGRectMake(self.contentLeft - maxVolumeAttStrSize.width, (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, maxVolumeAttStrSize.width, maxVolumeAttStrSize.height)];
+    CGRect maxVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:maxVolumeAttStrSize.width), (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, maxVolumeAttStrSize.width, maxVolumeAttStrSize.height);
+    [self drawRect:context rect:maxVolumeRect color:labelBGColor];
+    [self drawLabel:context attributesText:maxVolumeAttStr rect:maxVolumeRect];
     
     
-    /*
-    NSString * maxRateStr = [self handleRateWithPrice:self.maxPrice originPX:(self.maxPrice+self.minPrice)/2.0];
-    NSMutableAttributedString * maxRateAttStr = [[NSMutableAttributedString alloc]initWithString:maxRateStr attributes:drawAttributes];
-    CGSize sizeMaxRateAttStr = [maxPriceAttStr size];
-    [self drawLabel:context attributesText:maxRateAttStr rect:CGRectMake(self.contentRight, self.contentTop, sizeMaxRateAttStr.width, sizeMaxRateAttStr.height)];
-    
-    NSString * minRateStr = [self handleRateWithPrice:self.minPrice originPX:(self.maxPrice+self.minPrice)/2.0];
-    NSMutableAttributedString * minRateAttStr = [[NSMutableAttributedString alloc]initWithString:minRateStr attributes:drawAttributes];
-    CGSize sizeMinRateAttStr = [minRateAttStr size];
-    [self drawLabel:context attributesText:minRateAttStr rect:CGRectMake(self.contentRight, ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinRateAttStr.height ), sizeMinPriceAttStr.width, sizeMinRateAttStr.height)];*/
+    if (self.rightYAxisDrawEnabled) {
+        NSString * maxRateStr = [self handleRateWithPrice:self.maxPrice originPX:(self.maxPrice+self.minPrice)/2.0];
+        NSMutableAttributedString * maxRateAttStr = [[NSMutableAttributedString alloc]initWithString:maxRateStr attributes:drawAttributes];
+        CGSize sizeMaxRateAttStr = [maxRateAttStr size];
+        CGRect maxRateRect = CGRectMake(self.contentRight- (self.leftYAxisIsInChart?sizeMaxRateAttStr.width:0), self.contentTop, sizeMaxRateAttStr.width, sizeMaxRateAttStr.height);
+        [self drawRect:context rect:maxRateRect color:labelBGColor];
+        [self drawLabel:context attributesText:maxRateAttStr rect:maxRateRect];
+        
+        NSString * minRateStr = [self handleRateWithPrice:self.minPrice originPX:(self.maxPrice+self.minPrice)/2.0];
+        NSMutableAttributedString * minRateAttStr = [[NSMutableAttributedString alloc]initWithString:minRateStr attributes:drawAttributes];
+        CGSize sizeMinRateAttStr = [minRateAttStr size];
+        CGRect minRateRect = CGRectMake(self.contentRight-(self.leftYAxisIsInChart?sizeMinRateAttStr.width:0), ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinRateAttStr.height ), sizeMinRateAttStr.width, sizeMinRateAttStr.height);
+        [self drawRect:context rect:minRateRect color:labelBGColor];
+        [self drawLabel:context attributesText:minRateAttStr rect:minRateRect];
+    }
     
 }
 
@@ -109,24 +126,23 @@
               lineWidth:(CGFloat)lineWidth
 {
     
-    NSString * leftMarkerStr;
-    NSString * bottomMarkerStr;
-    NSString * rightMarkerStr;
+    NSString * leftMarkerStr = @"";
+    NSString * bottomMarkerStr = @"";
+    NSString * rightMarkerStr = @"";
+    NSString * volumeMarkerStr = @"";
     
     
     if ([value isKindOfClass:[YKTimeLineEntity class]]) {
         YKTimeLineEntity * entity = value;
         leftMarkerStr = [self handleStrWithPrice:entity.lastPirce];
-        
         bottomMarkerStr = entity.currtTime;
         rightMarkerStr = entity.rate;
 
-        
     }else if([value isKindOfClass:[YKLineEntity class]]){
         YKLineEntity * entity = value;
         leftMarkerStr = [self handleStrWithPrice:entity.close];
         bottomMarkerStr = entity.date;
-        rightMarkerStr = entity.rate;
+        volumeMarkerStr = [NSString stringWithFormat:@"%@%@",[self handleShowNumWithVolume:entity.volume],[self handleShowWithVolume:entity.volume]];
     }else{
         return;
     }
@@ -165,14 +181,25 @@
     NSMutableAttributedString * bottomMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:bottomMarkerStr attributes:drawAttributes];
     
     CGSize bottomMarkerStrAttSize = [bottomMarkerStrAtt size];
-    [self drawLabel:context attributesText:bottomMarkerStrAtt rect:CGRectMake(point.x - bottomMarkerStrAttSize.width/2.0,  ((self.uperChartHeightScale * self.contentHeight) + self.contentTop), bottomMarkerStrAttSize.width, bottomMarkerStrAttSize.height)];
+    CGRect rect = CGRectMake(point.x - bottomMarkerStrAttSize.width/2.0,  ((self.uperChartHeightScale * self.contentHeight) + self.contentTop), bottomMarkerStrAttSize.width, bottomMarkerStrAttSize.height);
+    if (rect.size.width + rect.origin.x > self.contentRight) {
+        rect.origin.x = self.contentRight -rect.size.width;
+    }
+    if (rect.origin.x < self.contentLeft) {
+        rect.origin.x = self.contentLeft;
+    }
+    [self drawLabel:context attributesText:bottomMarkerStrAtt rect:rect];
     
     
     NSMutableAttributedString * rightMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:rightMarkerStr attributes:drawAttributes];
     CGSize rightMarkerStrAttSize = [rightMarkerStrAtt size];
     [self drawLabel:context attributesText:rightMarkerStrAtt rect:CGRectMake(self.contentRight, point.y - rightMarkerStrAttSize.height/2.0, rightMarkerStrAttSize.width, rightMarkerStrAttSize.height)];
     
+    NSMutableAttributedString * volumeMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:volumeMarkerStr attributes:drawAttributes];
+    CGSize volumeMarkerStrAttSize = [volumeMarkerStrAtt size];
+    [self drawLabel:context attributesText:volumeMarkerStrAtt rect:CGRectMake(self.contentLeft,  self.contentHeight * self.uperChartHeightScale+self.xAxisHeitht, volumeMarkerStrAttSize.width, volumeMarkerStrAttSize.height)];
     
+
     
 }
 
@@ -216,11 +243,23 @@
 - (NSString *)handleRateWithPrice:(CGFloat)price
                          originPX:(CGFloat)originPX
 {
-    
-    return [NSString stringWithFormat:@"%.2f",(price - originPX)/originPX *100.00];
+ 
+    if (0 == originPX) {
+        return @"--";
+    }
+    CGFloat rate = (price - originPX)/originPX *100.00;
+    if(rate >0){
+        return [NSString stringWithFormat:@"+%.2f%@",rate,@"%"];
+
+    }
+    return [NSString stringWithFormat:@"%.2f%@",rate,@"%"];
 }
+
 - (NSString *)handleStrWithPrice:(CGFloat)price
 {
+    if (self.isETF) {
+        return [NSString stringWithFormat:@"%.3f ",price];
+    }
     return [NSString stringWithFormat:@"%.2f ",price];
 }
 - (NSString *)handleShowWithVolume:(CGFloat)volume

@@ -4,6 +4,7 @@
 //
 //  Created by chenyk on 15/12/12.
 //  Copyright © 2015年 chenyk. All rights reserved.
+//  https://github.com/chenyk0317/YKLineChartView
 //
 
 #import "TimeLineChartViewController.h"
@@ -44,6 +45,7 @@
     self.timeLineView.uperChartHeightScale = 0.7;
     self.timeLineView.xAxisHeitht = 25;
     self.timeLineView.countOfTimes = 242;
+    self.timeLineView.endPointShowEnabled = YES;
     
     YKTimeDataset * set  = [[YKTimeDataset alloc]init];
     set.data = timeArray;

@@ -4,7 +4,7 @@
 //
 //  Created by chenyk on 15/12/10.
 //  Copyright © 2015年 chenyk. All rights reserved.
-//
+//  https://github.com/chenyk0317/YKLineChartView
 
 #import "YKTimeLineView.h"
 #import "YKLineEntity.h"
@@ -42,6 +42,7 @@
 }
 - (void)setupData:(YKTimeDataset *)dataSet
 {
+
     self.dataset = dataSet;
     [self notifyDataSetChanged];
 }
@@ -56,28 +57,37 @@
 - (void)setCurrentDataMaxAndMin
 {
   
+    
     if (self.dataset.data.count > 0) {
         self.maxPrice = CGFLOAT_MIN;
         self.minPrice = CGFLOAT_MAX;
         self.maxVolume = CGFLOAT_MIN;
         self.offsetMaxPrice = CGFLOAT_MIN;
-        
         for (NSInteger i = 0; i < self.dataset.data.count; i++) {
             YKTimeLineEntity  * entity = [self.dataset.data objectAtIndex:i];
             
             self.offsetMaxPrice = self.offsetMaxPrice >fabs(entity.lastPirce-entity.preClosePx)?self.offsetMaxPrice:fabs(entity.lastPirce-entity.preClosePx);
+            if (entity.avgPirce) {
+              self.offsetMaxPrice = self.offsetMaxPrice > fabs(entity.avgPirce - entity.preClosePx)?self.offsetMaxPrice:fabs(entity.avgPirce - entity.preClosePx);
+            }
             self.maxVolume = self.maxVolume >entity.volume ? self.maxVolume : entity.volume;
         }
         self.maxPrice =((YKTimeLineEntity *)[self.dataset.data firstObject]).preClosePx + self.offsetMaxPrice;
         self.minPrice =((YKTimeLineEntity *)[self.dataset.data firstObject]).preClosePx - self.offsetMaxPrice;
         
+        if (self.maxPrice == self.minPrice) {
+            self.maxPrice = self.maxPrice + 0.01;
+            self.minPrice = self.minPrice - 0.01;
+        }
         for (NSInteger i = 0; i < self.dataset.data.count; i++) {
             YKTimeLineEntity  * entity = [self.dataset.data objectAtIndex:i];
-            entity.avgPirce = entity.avgPirce < self.minPrice ? self.minPrice :entity.avgPirce;
-            entity.avgPirce = entity.avgPirce > self.maxPrice ? self.maxPrice :entity.avgPirce;
+            if (entity.avgPirce != 0) {
+                entity.avgPirce = entity.avgPirce < self.minPrice ? self.minPrice :entity.avgPirce;
+                entity.avgPirce = entity.avgPirce > self.maxPrice ? self.maxPrice :entity.avgPirce;
+            }
         }
       
-        
+
     }
 }
 
@@ -90,11 +100,15 @@
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [self drawGridBackground:context rect:rect];
-    [self drawLabelPrice:context];
-    [self drawTimeLabel:context];
-    [self drawTimeLine:context];
+
     
+    [self drawGridBackground:context rect:rect];
+    [self drawTimeLabel:context];
+    if (self.dataset.data.count>0) {
+        [self drawTimeLine:context];
+    }
+    [self drawLabelPrice:context];
+
 
 }
 
@@ -130,8 +144,6 @@
     
     CGMutablePathRef fillPath = CGPathCreateMutable();
     
-    
-
     for (NSInteger i = 0 ; i< self.dataset.data.count; i ++) {
         
         YKTimeLineEntity  * entity  = [self.dataset.data objectAtIndex:i];
@@ -144,10 +156,7 @@
         
         UIColor * color = self.dataset.volumeRiseColor;
         
-        
-        
         if (i > 0){
-            
             YKTimeLineEntity * lastEntity = [self.dataset.data objectAtIndex:i -1];
             CGFloat lastX = startX - self.volumeWidth;
             
@@ -157,11 +166,14 @@
             
             [self drawline:context startPoint:CGPointMake(lastX, lastYPrice) stopPoint:CGPointMake(startX, yPrice) color:self.dataset.priceLineCorlor lineWidth:self.dataset.lineWidth];
             
-
-            CGFloat lastYAvg = (self.maxPrice - lastEntity.avgPirce)*self.candleCoordsScale  + self.contentTop;
-            CGFloat  yAvg = (self.maxPrice - entity.avgPirce)*self.candleCoordsScale  + self.contentTop;
-            
-            [self drawline:context startPoint:CGPointMake(lastX, lastYAvg) stopPoint:CGPointMake(startX, yAvg) color:self.dataset.avgLineCorlor lineWidth:self.dataset.lineWidth];
+            if (self.isDrawAvgEnabled) {
+                if (lastEntity.avgPirce > 0 && entity.avgPirce > 0) {
+                    CGFloat lastYAvg = (self.maxPrice - lastEntity.avgPirce)*self.candleCoordsScale  + self.contentTop;
+                    CGFloat  yAvg = (self.maxPrice - entity.avgPirce)*self.candleCoordsScale  + self.contentTop;
+                    
+                    [self drawline:context startPoint:CGPointMake(lastX, lastYAvg) stopPoint:CGPointMake(startX, yAvg) color:self.dataset.avgLineCorlor lineWidth:self.dataset.lineWidth];
+                }
+            }
             
             
             if (entity.lastPirce > lastEntity.lastPirce) {
@@ -225,6 +237,26 @@
     CGPathRelease(fillPath);
  
     CGContextRestoreGState(context);
+    
+    
+    for (NSInteger i = 0 ; i< self.dataset.data.count; i ++) {
+        YKTimeLineEntity  * entity  = [self.dataset.data objectAtIndex:i];
+        CGFloat left = (self.volumeWidth * i + self.contentLeft) + self.volumeWidth / 6.0;
+        CGFloat candleWidth = self.volumeWidth - self.volumeWidth / 6.0;
+        CGFloat startX = left + candleWidth/2.0 ;
+        if (i > 0){
+            YKTimeLineEntity * lastEntity = [self.dataset.data objectAtIndex:i -1];
+            CGFloat lastX = startX - self.volumeWidth;
+            if (self.isDrawAvgEnabled) {
+                if (lastEntity.avgPirce > 0 && entity.avgPirce > 0) {
+                    CGFloat lastYAvg = (self.maxPrice - lastEntity.avgPirce)*self.candleCoordsScale  + self.contentTop;
+                    CGFloat  yAvg = (self.maxPrice - entity.avgPirce)*self.candleCoordsScale  + self.contentTop;
+                    
+                    [self drawline:context startPoint:CGPointMake(lastX, lastYAvg) stopPoint:CGPointMake(startX, yAvg) color:self.dataset.avgLineCorlor lineWidth:self.dataset.lineWidth];
+                }
+            }
+        }
+    }
 }
 
 
@@ -337,7 +369,8 @@
         _breathingPoint.masksToBounds = YES;
         _breathingPoint.borderWidth = 1;
         _breathingPoint.borderColor = self.dataset.priceLineCorlor.CGColor;
-        [_breathingPoint addAnimation:[self breathingLight:.8f] forKey:@"breathingPoint"];
+
+        [_breathingPoint addAnimation:[self groupAnimationDurTimes:1.5f] forKey:@"breathingPoint"];
     }
     return _breathingPoint;
 }
@@ -354,4 +387,21 @@
     animation.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     return animation;
 }
+-(CAAnimationGroup *)groupAnimationDurTimes:(float)time;
+{
+    CABasicAnimation *scaleAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    scaleAnim.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    scaleAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8, 0.8, 1.0)];
+    scaleAnim.removedOnCompletion = NO;
+    
+    NSArray * array = @[[self breathingLight:time],scaleAnim];
+    CAAnimationGroup *animation=[CAAnimationGroup animation];
+    animation.animations= array;
+    animation.duration=time;
+    animation.repeatCount=MAXFLOAT;
+    animation.removedOnCompletion=NO;
+    animation.fillMode=kCAFillModeForwards;
+    return animation;
+}
+
 @end
