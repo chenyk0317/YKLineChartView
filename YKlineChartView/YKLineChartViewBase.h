@@ -68,7 +68,11 @@
 
 - (void)drawLabelPrice:(CGContextRef)context;
 
-
+//圆点
+-(void)drawCiclyPoint:(CGContextRef)context
+                point:(CGPoint)point
+               radius:(CGFloat)radius
+                color:(UIColor*)color;
 - (void)drawHighlighted:(CGContextRef)context
                   point:(CGPoint)point
                    idex:(NSInteger)idex

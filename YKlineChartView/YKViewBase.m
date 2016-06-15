@@ -36,8 +36,9 @@
 }
 - (void)addObserver
 {
-    [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    //@2016-5-16 by Liuk autolayout不会触发bounds, frame
+//    [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+//    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     
     [[UIDevice currentDevice]beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -49,25 +50,38 @@
 //}
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:@"bounds"];
-    [self removeObserver:self forKeyPath:@"frame"];
+//    [self removeObserver:self forKeyPath:@"bounds"];
+//    [self removeObserver:self forKeyPath:@"frame"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"bounds"] || [keyPath isEqualToString: @"frame"])
+//@2016-5-16 by Liuk autolayout不会触发bounds, frame
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+//{
+//    if ([keyPath isEqualToString:@"bounds"] || [keyPath isEqualToString: @"frame"])
+//    {
+//        CGRect  bounds = self.bounds;
+//        
+//        if ((bounds.size.width != self.chartWidth ||
+//             bounds.size.height != self.chartHeight))
+//        {
+//            [self setChartDimens:bounds.size.width height:bounds.size.height];
+//            [self notifyDataSetChanged];
+//            
+//        }
+//    }
+//    
+//}
+
+-(void)layoutSubviews{
+    //@2016-5-16 byliukai， 布局调整
+    CGRect  bounds = self.bounds;
+    if ((bounds.size.width != self.chartWidth ||
+         bounds.size.height != self.chartHeight))
     {
-        CGRect  bounds = self.bounds;
+        [self setChartDimens:bounds.size.width height:bounds.size.height];
+        [self notifyDataSetChanged];
         
-        if ((bounds.size.width != self.chartWidth ||
-             bounds.size.height != self.chartHeight))
-        {
-            [self setChartDimens:bounds.size.width height:bounds.size.height];
-            [self notifyDataSetChanged];
-            
-        }
     }
-    
 }
 -(void) deviceOrientationDidChange:(NSNotification *) notification
 {
@@ -83,7 +97,8 @@
 }
 - (void)notifyDataSetChanged
 {
-    
+    [self setNeedsDisplay];
+
 }
 
 - (void)setupChartOffsetWithLeft:(CGFloat)left top:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom
@@ -92,6 +107,8 @@
     self.offsetRight = right;
     self.offsetTop = top;
     self.offsetBottom = bottom;
+    //by LiuK 需要设置_contentRect
+    [self restrainViewPort:left top:top right:right bottom:bottom];
     
 }
 - (void)setChartDimens:(CGFloat)width
