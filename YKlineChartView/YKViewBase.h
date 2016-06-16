@@ -7,7 +7,11 @@
 //  https://github.com/chenyk0317/YKLineChartView
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  @author LiuK, 16-05-16 17:05:55
+ *
+ *  1、修复view在autolayout下计算Frame的BUG
+ */
 @interface YKViewBase : UIView
 @property (nonatomic,assign) CGRect contentRect;
 @property (nonatomic,assign) CGFloat chartHeight;

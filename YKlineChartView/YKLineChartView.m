@@ -379,13 +379,13 @@
    
     CGFloat offset = point.x;
 
-    NSLog(@"%ld=======,%.2f,%.2f",self.startDrawIndex,offset,[recognizer velocityInView:self].x);
+    NSLog(@"%ld=======,%.2f,%.2f",(long)self.startDrawIndex,offset,[recognizer velocityInView:self].x);
 
 
     if (offset > 0) {
 
         NSInteger offsetIndex = offset/8.0 ;
-        NSLog(@"%ld",offsetIndex);
+        NSLog(@"%ld",(long)offsetIndex);
 
         self.startDrawIndex  -= offsetIndex;
         if ( self.startDrawIndex < 2) {
@@ -450,13 +450,13 @@
     NSInteger offset = (NSInteger)((self.lastPinCount -self.countOfshowCandle)/2);
     
     if (labs(offset)) {
-        NSLog(@"offset %ld",offset);
+        NSLog(@"offset %ld",(long)offset);
         self.lastPinCount = self.countOfshowCandle;
         self.startDrawIndex = self.startDrawIndex + offset;
         [self setNeedsDisplay];
     }
     
-    NSLog(@"%ld",self.startDrawIndex);
+    NSLog(@"%ld",(long)self.startDrawIndex);
     
     self.lastPinScale = recognizer.scale;
 

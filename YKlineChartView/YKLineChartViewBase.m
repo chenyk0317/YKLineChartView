@@ -16,7 +16,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-//        [self commonInit];
+        //        [self commonInit];
     }
     return self;
 }
@@ -24,15 +24,15 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-//        [self commonInit];
+        //        [self commonInit];
         
     }
     return self;
 }
 
 //- (void)commonInit {
-//    
-// 
+//
+//
 //}
 
 - (void)drawRect:(CGRect)rect
@@ -60,41 +60,41 @@
 
 - (void)drawLabelPrice:(CGContextRef)context
 {
- 
+    
     UIColor * labelBGColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     NSDictionary * drawAttributes = self.leftYAxisAttributedDic?:self.defaultAttributedDic;
-    
+    //@2016-5-12 by Liuk, 价格统一往左移2个像素，价格标签把图标的线遮挡了
     NSString * maxPriceStr = [self handleStrWithPrice:self.maxPrice];
     NSMutableAttributedString * maxPriceAttStr = [[NSMutableAttributedString alloc]initWithString:maxPriceStr attributes:drawAttributes];
     CGSize sizeMaxPriceAttStr = [maxPriceAttStr size];
-    CGRect maxPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMaxPriceAttStr.width), self.contentTop, sizeMaxPriceAttStr.width, sizeMaxPriceAttStr.height);
+    CGRect maxPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMaxPriceAttStr.width+2), self.contentTop, sizeMaxPriceAttStr.width, sizeMaxPriceAttStr.height);
     [self drawRect:context rect:maxPriceRect color:labelBGColor];
     [self drawLabel:context attributesText:maxPriceAttStr rect:maxPriceRect];
     
     NSString * midPriceStr = [self handleStrWithPrice:(self.maxPrice+self.minPrice)/2.0];
     NSMutableAttributedString * midPriceAttStr = [[NSMutableAttributedString alloc]initWithString:midPriceStr attributes:drawAttributes];
     CGSize sizeMidPriceAttStr = [midPriceAttStr size];
-    CGRect midPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMidPriceAttStr.width), ((self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop)-sizeMidPriceAttStr.height/2.0, sizeMidPriceAttStr.width, sizeMidPriceAttStr.height);
+    CGRect midPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMidPriceAttStr.width+2), ((self.uperChartHeightScale * self.contentHeight)/2.0 + self.contentTop)-sizeMidPriceAttStr.height/2.0, sizeMidPriceAttStr.width, sizeMidPriceAttStr.height);
     [self drawRect:context rect:midPriceRect color:labelBGColor];
     [self drawLabel:context attributesText:midPriceAttStr rect:midPriceRect];
     
     NSString * minPriceStr = [self handleStrWithPrice:self.minPrice];
     NSMutableAttributedString * minPriceAttStr = [[NSMutableAttributedString alloc]initWithString:minPriceStr attributes:drawAttributes];
     CGSize sizeMinPriceAttStr = [minPriceAttStr size];
-    CGRect minPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMinPriceAttStr.width), ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinPriceAttStr.height ), sizeMinPriceAttStr.width, sizeMinPriceAttStr.height);
+    CGRect minPriceRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:sizeMinPriceAttStr.width+2), ((self.uperChartHeightScale * self.contentHeight) + self.contentTop - sizeMinPriceAttStr.height ), sizeMinPriceAttStr.width, sizeMinPriceAttStr.height);
     [self drawRect:context rect:minPriceRect color:labelBGColor];
     [self drawLabel:context attributesText:minPriceAttStr rect:minPriceRect];
     
     NSMutableAttributedString * zeroVolumeAttStr = [[NSMutableAttributedString alloc]initWithString:[self handleShowWithVolume:self.maxVolume] attributes:drawAttributes];
     CGSize zeroVolumeAttStrSize = [zeroVolumeAttStr size];
-    CGRect zeroVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:zeroVolumeAttStrSize.width), self.contentBottom - zeroVolumeAttStrSize.height, zeroVolumeAttStrSize.width, zeroVolumeAttStrSize.height);
+    CGRect zeroVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:zeroVolumeAttStrSize.width+2), self.contentBottom - zeroVolumeAttStrSize.height, zeroVolumeAttStrSize.width, zeroVolumeAttStrSize.height);
     [self drawRect:context rect:zeroVolumeRect color:labelBGColor];
     [self drawLabel:context attributesText:zeroVolumeAttStr rect:zeroVolumeRect];
     
     NSString * maxVolumeStr = [self handleShowNumWithVolume:self.maxVolume];
     NSMutableAttributedString * maxVolumeAttStr = [[NSMutableAttributedString alloc]initWithString:maxVolumeStr attributes:drawAttributes];
     CGSize maxVolumeAttStrSize = [maxVolumeAttStr size];
-    CGRect maxVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:maxVolumeAttStrSize.width), (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, maxVolumeAttStrSize.width, maxVolumeAttStrSize.height);
+    CGRect maxVolumeRect = CGRectMake(self.contentLeft - (self.leftYAxisIsInChart?0:maxVolumeAttStrSize.width+2), (self.uperChartHeightScale * self.contentHeight)+self.xAxisHeitht, maxVolumeAttStrSize.width, maxVolumeAttStrSize.height);
     [self drawRect:context rect:maxVolumeRect color:labelBGColor];
     [self drawLabel:context attributesText:maxVolumeAttStr rect:maxVolumeRect];
     
@@ -137,7 +137,7 @@
         leftMarkerStr = [self handleStrWithPrice:entity.lastPirce];
         bottomMarkerStr = entity.currtTime;
         rightMarkerStr = entity.rate;
-
+        
     }else if([value isKindOfClass:[YKLineEntity class]]){
         YKLineEntity * entity = value;
         leftMarkerStr = [self handleStrWithPrice:entity.close];
@@ -170,7 +170,7 @@
     
     
     NSDictionary * drawAttributes = self.highlightAttributedDic?:self.defaultAttributedDic;
- 
+    
     
     NSMutableAttributedString * leftMarkerStrAtt = [[NSMutableAttributedString alloc]initWithString:leftMarkerStr attributes:drawAttributes];
     
@@ -199,7 +199,7 @@
     CGSize volumeMarkerStrAttSize = [volumeMarkerStrAtt size];
     [self drawLabel:context attributesText:volumeMarkerStrAtt rect:CGRectMake(self.contentLeft,  self.contentHeight * self.uperChartHeightScale+self.xAxisHeitht, volumeMarkerStrAttSize.width, volumeMarkerStrAttSize.height)];
     
-
+    
     
 }
 
@@ -207,8 +207,8 @@
    attributesText:(NSAttributedString *)attributesText
              rect:(CGRect)rect
 {
-    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
     [attributesText drawInRect:rect];
+    //[self drawRect:context rect:rect color:[UIColor clearColor]];
 }
 
 - (void)drawRect:(CGContextRef)context
@@ -221,7 +221,16 @@
     CGContextSetFillColorWithColor(context, color.CGColor);
     CGContextFillRect(context, rect);
 }
-
+-(void)drawCiclyPoint:(CGContextRef)context
+                point:(CGPoint)point
+               radius:(CGFloat)radius
+                color:(UIColor*)color{
+    CGContextSetFillColorWithColor(context, color.CGColor);//填充颜色
+    CGContextSetStrokeColorWithColor(context, color.CGColor);
+    CGContextSetLineWidth(context, 1.0);//线的宽度
+    CGContextAddArc(context, point.x, point.y, radius, 0, 2*M_PI, 0); //添加一个圆
+    CGContextDrawPath(context, kCGPathFillStroke); //绘制路径加填充
+}
 - (void)drawline:(CGContextRef)context
       startPoint:(CGPoint)startPoint
        stopPoint:(CGPoint)stopPoint
@@ -243,14 +252,14 @@
 - (NSString *)handleRateWithPrice:(CGFloat)price
                          originPX:(CGFloat)originPX
 {
- 
+    
     if (0 == originPX) {
         return @"--";
     }
     CGFloat rate = (price - originPX)/originPX *100.00;
     if(rate >0){
         return [NSString stringWithFormat:@"+%.2f%@",rate,@"%"];
-
+        
     }
     return [NSString stringWithFormat:@"%.2f%@",rate,@"%"];
 }
@@ -289,7 +298,7 @@
 - (NSDictionary *)defaultAttributedDic
 {
     if (!_defaultAttributedDic) {
-        _defaultAttributedDic = @{NSFontAttributeName:[UIFont systemFontOfSize:10],NSBackgroundColorAttributeName:self.gridBackgroundColor?:[UIColor whiteColor]};
+        _defaultAttributedDic = @{NSFontAttributeName:[UIFont systemFontOfSize:10],NSBackgroundColorAttributeName:[UIColor clearColor]};
     }
     return _defaultAttributedDic;
 }
@@ -308,11 +317,11 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
